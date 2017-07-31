@@ -1,24 +1,33 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+// import { Ionicons } from '@expo/vector-icons';
+import { EvilIcons } from '@expo/vector-icons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import Profile from '../screens/Profile';
+import AddPost from '../screens/AddPost';
+import Chat from '../screens/Chat';
+import Notifications from '../screens/Notifications';
 
 export default TabNavigator(
   {
     Home: {
       screen: HomeScreen,
     },
-    Links: {
-      screen: LinksScreen,
+    Notifications: {
+      screen: Notifications,
     },
-    Settings: {
-      screen: SettingsScreen,
+    AddPost: {
+      screen: AddPost,
+    },
+    Chat: {
+      screen: Chat,
+    },
+    Profile: {
+      screen: Profile,
     },
   },
   {
@@ -28,22 +37,23 @@ export default TabNavigator(
         let iconName;
         switch (routeName) {
           case 'Home':
-            iconName = Platform.OS === 'ios'
-              ? `ios-information-circle${focused ? '' : '-outline'}`
-              : 'md-information-circle';
-            break;
-          case 'Links':
-            iconName = Platform.OS === 'ios'
-              ? `ios-link${focused ? '' : '-outline'}`
-              : 'md-link';
-            break;
-          case 'Settings':
-            iconName = Platform.OS === 'ios'
-              ? `ios-options${focused ? '' : '-outline'}`
-              : 'md-options';
+            iconName = 'archive'
+          break;
+          case 'Chat':
+            iconName = 'sc-telegram'
+          break;
+          case 'AddPost':
+            iconName = 'plus'
+          break;
+          case 'Notifications':
+            iconName = 'bell'
+          break;
+          case 'Profile':
+            iconName = 'user'
+          break;
         }
         return (
-          <Ionicons
+          <EvilIcons
             name={iconName}
             size={28}
             style={{ marginBottom: -3 }}
