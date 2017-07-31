@@ -66,5 +66,13 @@ export default TabNavigator(
     tabBarPosition: 'bottom',
     animationEnabled: true,
     swipeEnabled: true,
+    tabBarOptions: {
+      style: {
+        backgroundColor: 'rgb(2, 27, 66)',
+        shadowColor: 'rgb(2, 27, 66)',
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
+      }
+    }
   }
 );
