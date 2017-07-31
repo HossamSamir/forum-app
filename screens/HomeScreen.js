@@ -65,7 +65,7 @@ export default class HomeScreen extends React.Component {
 
 
                   <Button
-                    title="Press me"
+                    title="Android test"
                     onPress={this._handleButtonPress}
                   />
 
