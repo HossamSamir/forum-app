@@ -44,6 +44,10 @@ export default class HomeScreen extends React.Component {
                title = 'Kanon Character and Endin...'
                source = {require('../assets/images/post-pic.png')}
                date = 'july 28, 2017' />
+            <PostCard
+              title = 'see more'
+              source = {require('../assets/images/see-more.png')}
+              date = '...' />
           </ScrollView>
 
 
@@ -64,9 +68,9 @@ export default class HomeScreen extends React.Component {
                source = {require('../assets/images/post-pic5.jpg')}
                date = 'july 28, 2017' />
             <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
-               date = 'july 28, 2017' />
+              title = 'see more'
+              source = {require('../assets/images/see-more.png')}
+              date = '...' />
           </ScrollView>
 
 
@@ -86,9 +90,9 @@ export default class HomeScreen extends React.Component {
                source = {require('../assets/images/post-pic6.jpg')}
                date = 'july 28, 2017' />
             <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
-               date = 'july 28, 2017' />
+               title = 'see more'
+               source = {require('../assets/images/see-more.png')}
+               date = '...' />
           </ScrollView>
 
 
