@@ -38,7 +38,7 @@ export default class HomeScreen extends React.Component {
                date = 'july 28, 2017' />
             <PostCard
                title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
+               source = {require('../assets/images/post-pic4.jpg')}
                date = 'july 28, 2017' />
             <PostCard
                title = 'Kanon Character and Endin...'
@@ -57,11 +57,11 @@ export default class HomeScreen extends React.Component {
           <ScrollView horizontal={true}>
             <PostCard
                title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
+               source = {require('../assets/images/post-pic2.jpg')}
                date = 'july 28, 2017' />
             <PostCard
                title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
+               source = {require('../assets/images/post-pic5.jpg')}
                date = 'july 28, 2017' />
             <PostCard
                title = 'Kanon Character and Endin...'
@@ -79,11 +79,11 @@ export default class HomeScreen extends React.Component {
           <ScrollView horizontal={true}>
             <PostCard
                title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
+               source = {require('../assets/images/post-pic3.jpg')}
                date = 'july 28, 2017' />
             <PostCard
                title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
+               source = {require('../assets/images/post-pic6.jpg')}
                date = 'july 28, 2017' />
             <PostCard
                title = 'Kanon Character and Endin...'
