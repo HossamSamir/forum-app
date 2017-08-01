@@ -12,7 +12,7 @@ import {
   ListView
 } from 'react-native';
 import { WebBrowser } from 'expo';
-
+import PostCard from '../components/PostCard';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
@@ -31,69 +31,19 @@ export default class HomeScreen extends React.Component {
           <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
             Anime & Manga
           </Text>
-
-
           <ScrollView horizontal={true}>
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
-
-
-
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
-
-
-
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
           </ScrollView>
 
 
@@ -104,68 +54,19 @@ export default class HomeScreen extends React.Component {
             MyAnimeList
           </Text>
 
-
           <ScrollView horizontal={true}>
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
-
-
-
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
-
-
-
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
           </ScrollView>
 
 
@@ -175,68 +76,19 @@ export default class HomeScreen extends React.Component {
             heres another categorey
           </Text>
 
-
           <ScrollView horizontal={true}>
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
-
-
-
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
-
-
-
-            <View style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
-              <View style={{backgroundColor: 'black', width: '100%', height: 130}}>
-                <Image
-                  source={require('../assets/images/post-pic.png')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                  }}
-                />
-              </View>
-              <View style={{backgroundColor: 'white', width: '100%', height: 70, padding: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 12}}>
-                  {'Kanon Character and Endin...'.toUpperCase()}
-                </Text>
-                <Text style={{marginTop: 5, color: 'grey'}}>july 28, 2017</Text>
-              </View>
-            </View>
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
+            <PostCard
+               title = 'Kanon Character and Endin...'
+               source = {require('../assets/images/post-pic.png')}
+               date = 'july 28, 2017' />
           </ScrollView>
 
 
