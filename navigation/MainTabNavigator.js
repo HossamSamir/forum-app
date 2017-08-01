@@ -65,11 +65,11 @@ export default TabNavigator(
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: true,
-    swipeEnabled: true,
+    swipeEnabled: false,
     tabBarOptions: {
       style: {
-        backgroundColor: 'rgb(2, 27, 66)',
-        shadowColor: 'rgb(2, 27, 66)',
+        backgroundColor: 'white',
+        shadowColor: 'rgba(0,0,0,0.23)',
         shadowOpacity: 0.4,
         shadowRadius: 10,
       }
