@@ -15,7 +15,7 @@ import { MonoText } from '../components/StyledText';
 import { StackNavigator } from 'react-navigation';
 
 
-export default class Notifications extends React.Component {
+export default class Post extends React.Component {
   _handleButtonPress = () => {
     Alert.alert(
       "Welcome",

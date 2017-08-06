@@ -12,21 +12,10 @@ import {
   ListView
 } from 'react-native';
 
-
-
 export default class PostCard extends React.Component {
-
-  _handlePostPress = () => {
-    Alert.alert(
-      this.props.title,
-      this.props.date
-    )
-  }
-
   render() {
     return (
-      <TouchableOpacity
-        onPress={this._handlePostPress}
+      <View
         style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
         <View style={{backgroundColor: 'white', width: '100%', height: 130}}>
           <Image
@@ -46,7 +35,7 @@ export default class PostCard extends React.Component {
             {this.props.date}
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   }
 }

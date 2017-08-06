@@ -12,17 +12,19 @@ import {
   ListView
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import Post from '../screens/Post';
 import PostCard from '../components/PostCard';
 import { MonoText } from '../components/StyledText';
+import { StackNavigator } from 'react-navigation';
 
 export default class HomeScreen extends React.Component {
 
-
-  static navigationOptions = {
-    header: null,
+static navigationOptions = {
+    header: null
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
 
@@ -32,10 +34,14 @@ export default class HomeScreen extends React.Component {
             Anime & Manga
           </Text>
           <ScrollView horizontal={true}>
-            <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
-               date = 'july 28, 2017' />
+            <TouchableOpacity
+              onPress={() => navigate('Post')}
+            >
+              <PostCard
+                 title = 'Kanon Character and Endin...'
+                 source = {require('../assets/images/post-pic.png')}
+                 date = 'july 28, 2017' />
+            </TouchableOpacity>
             <PostCard
                title = 'Kanon Character and Endin...'
                source = {require('../assets/images/post-pic4.jpg')}
@@ -108,6 +114,12 @@ export default class HomeScreen extends React.Component {
 
 
 }
+
+const SimpleApp = StackNavigator({
+  HomeScreen: { screen: HomeScreen },
+  Post: { screen: Post },
+});
+
 
 const styles = StyleSheet.create({
   container: {
