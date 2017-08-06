@@ -18,6 +18,14 @@ import { MonoText } from '../components/StyledText';
 import { StackNavigator } from 'react-navigation';
 
 export default class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: 'this is a title',
+      imgsource: {uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg'},
+      date: 'july 28, 2017'
+    }
+  }
 
 static navigationOptions = {
     header: null
@@ -34,22 +42,63 @@ static navigationOptions = {
             Anime & Manga
           </Text>
           <ScrollView horizontal={true}>
+
             <TouchableOpacity
-              onPress={() => navigate('Post', {user: 'Hossam'})}
+              onPress={() => navigate(
+                'Post',
+                {
+                  title: this.state.title,
+                  imgsource: this.state.imgsource,
+                  date: this.state.date,
+                })}
             >
               <PostCard
-                 title = 'Kanon Character and Endin...'
-                 source = {require('../assets/images/post-pic.png')}
-                 date = 'july 28, 2017' />
+                 title = {this.state.title}
+                 source = {this.state.imgsource}
+                 date = {this.state.date} />
             </TouchableOpacity>
-            <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic4.jpg')}
-               date = 'july 28, 2017' />
-            <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic.png')}
-               date = 'july 28, 2017' />
+
+
+
+
+            <TouchableOpacity
+              onPress={() => navigate(
+                'Post',
+                {
+                  title: this.state.title,
+                  imgsource: this.state.imgsource,
+                  date: this.state.date,
+                })}
+            >
+              <PostCard
+                 title = {this.state.title}
+                 source = {this.state.imgsource}
+                 date = {this.state.date} />
+            </TouchableOpacity>
+
+
+
+
+            <TouchableOpacity
+              onPress={() => navigate(
+                'Post',
+                {
+                  title: this.state.title,
+                  imgsource: this.state.imgsource,
+                  date: this.state.date,
+                })}
+            >
+              <PostCard
+                 title = {this.state.title}
+                 source = {this.state.imgsource}
+                 date = {this.state.date} />
+            </TouchableOpacity>
+
+
+
+
+
+
             <PostCard
               title = 'see more'
               source = {require('../assets/images/see-more.png')}
