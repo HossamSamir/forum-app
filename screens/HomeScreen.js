@@ -35,7 +35,7 @@ static navigationOptions = {
           </Text>
           <ScrollView horizontal={true}>
             <TouchableOpacity
-              onPress={() => navigate('Post')}
+              onPress={() => navigate('Post', {user: 'Hossam'})}
             >
               <PostCard
                  title = 'Kanon Character and Endin...'

@@ -24,6 +24,7 @@ export default class Post extends React.Component {
 
   };
   render() {
+    const { params } = this.props.navigation.state;
     return (
       <View style={styles.container}>
         <ScrollView
@@ -34,6 +35,7 @@ export default class Post extends React.Component {
                     title="Android test"
                     onPress={this._handleButtonPress}
                   />
+                <Text>Chat with {params.user}</Text>
 
 
 
