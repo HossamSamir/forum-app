@@ -16,6 +16,12 @@ import { StackNavigator } from 'react-navigation';
 
 
 export default class Notifications extends React.Component {
+
+  static navigationOptions = {
+      header: null
+    };
+
+
   _handleButtonPress = () => {
     Alert.alert(
       "Welcome",

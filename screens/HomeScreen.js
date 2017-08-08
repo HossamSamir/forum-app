@@ -44,6 +44,17 @@ static navigationOptions = {
           <ScrollView horizontal={true}>
 
             <TouchableOpacity
+              // onPress={() => {
+                // getting data from the server
+                // fetch('https://forum-app-api.herokuapp.com/api/post?post_id=41').then((res) => console.log(res))
+                // navigate(
+                //   'Post',
+                //   {
+                //     title: this.state.title,
+                //     imgsource: this.state.imgsource,
+                //     date: this.state.date,
+                //   })
+              // }}
               onPress={() => navigate(
                 'Post',
                 {
