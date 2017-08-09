@@ -10,30 +10,24 @@ import {
   Button,
   Alert
 } from 'react-native';
-import Login from './Login'
 
-export default class Profile extends React.Component {
-
-  _hasLoggedIn = () => {
-    return this.state.loggedIn ? <Profile /> : <Login />
-  }
-
-  constructor(props){
-    super(props)
-    this.state = {
-      loggedIn: false
-    }
-  }
-
+export default class Login extends React.Component {
   static navigationOptions = {
-    header: null
-  }
-
+    header: null,
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        { this._hasLoggedIn() }
+        <Text>
+          asklfhaklshflkashf
+        </Text>
+        <Text>
+          asklfhaklshflkashf
+        </Text>
+        <Text>
+          asklfhaklshflkashf
+        </Text>
       </View>
     );
   }
@@ -45,5 +39,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  }
-})
+  },
+});

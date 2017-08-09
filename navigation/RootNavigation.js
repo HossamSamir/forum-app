@@ -5,11 +5,19 @@ import { StackNavigator } from 'react-navigation';
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import Post from '../screens/Post';
+import Login from '../screens/Login';
+import Signup from '../screens/Signup';
 
 const RootStackNavigator = StackNavigator(
   {
     Main: {
       screen: MainTabNavigator,
+    },
+    Login: {
+      screen: Login,
+    },
+    Signup: {
+      screen: Signup,
     },
     Post: {
       screen: Post,
