@@ -37,10 +37,10 @@ export default TabNavigator(
         let iconName;
         switch (routeName) {
           case 'Home':
-            iconName = 'archive'
+            iconName = 'clock'
           break;
           case 'Chat':
-            iconName = 'sc-telegram'
+            iconName = 'comment'
           break;
           case 'AddPost':
             iconName = 'plus'
