@@ -97,6 +97,16 @@ export default class Profile extends React.Component {
         </KeyboardAvoidingView>
 
       ) // end of the return
+    } else {
+      return (
+        <View>
+          <Text> Your profile </Text>
+          <Text> Your profile </Text>
+          <Text> Your profile </Text>
+          <Text> Your profile </Text>
+          <Text> Your profile </Text>
+        </View>
+      ) // end of the return
     }
   }
 
@@ -119,13 +129,20 @@ export default class Profile extends React.Component {
   }
 
   _handleLogin = () => {
-    this.props.navigation.navigate(
-      'Post',
-      {
-        title: 'hhhhhhhhhhh',
-        imgsource: 'hhhhhhhhhhh',
-        date: 'hhhhhhhhhhh',
-      });
+    // this.props.navigation.navigate(
+    //   'Post',
+    //   {
+    //     title: 'hhhhhhhhhhh',
+    //     imgsource: 'hhhhhhhhhhh',
+    //     date: 'hhhhhhhhhhh',
+    //   });
+    if (this.state.email == 'Hossam@Hossam.com') {
+      this.setState({
+        loggedIn: true
+      })
+    } else {
+      Alert.alert('Wrong Email')
+    }
   }
 
 
