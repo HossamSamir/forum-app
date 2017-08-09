@@ -14,16 +14,37 @@ import {
 } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid"
 import { EvilIcons } from '@expo/vector-icons';
-
+import { StackNavigator } from 'react-navigation';
+import Post from '../screens/Post';
 
 export default class Login extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  _handleChangeEmail = (email) => {
+    this.setState({ email })
+  }
+
+  _handleChangePassword = (password) => {
+    this.setState({ password })
+  }
+  _handleLogin = () => {
+    // this.props.navigation.navigate("Post")
+  }
+
+
   render() {
     return (
-        <KeyboardAvoidingView behavior='padding' style={styles.container}>
+        <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
 
             <Image source={require('../assets/images/bg.png')}
             style={{
@@ -50,7 +71,7 @@ export default class Login extends React.Component {
               <Row style={{flex: 2, flexDirection: 'column', }}>
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                   <EvilIcons name='user' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                  <TextInput placeholderTextColor='white' placeholder="Email Address" style={{
+                  <TextInput onChangeText={ this._handleChangeEmail }  placeholderTextColor='white' placeholder="Email Address" style={{
                   width: '80%',
                   fontSize: 10,
                   opacity: .7,
@@ -63,7 +84,7 @@ export default class Login extends React.Component {
 
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                   <EvilIcons name='lock' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                  <TextInput placeholderTextColor='white' placeholder="Password" secureTextEntry={true} style={{
+                  <TextInput onChangeText={ this._handleChangePassword } placeholderTextColor='white' placeholder="Password" secureTextEntry={true} style={{
                   width: '80%',
                   fontSize: 10,
                   opacity: .7,
@@ -75,7 +96,11 @@ export default class Login extends React.Component {
                 </View>
 
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center', alignItems: 'center',}}>
-                  <TouchableOpacity style={{ backgroundColor: 'crimson', paddingHorizontal: 50, paddingVertical: 8, borderRadius: 25 }}>
+                  <TouchableOpacity
+
+
+                    onPress={this._handleLogin}
+                     style={{ backgroundColor: 'crimson', paddingHorizontal: 50, paddingVertical: 8, borderRadius: 25 }}>
                     <EvilIcons name='arrow-right' size={25} color='white' />
                   </TouchableOpacity>
                 </View>
@@ -95,6 +120,7 @@ export default class Login extends React.Component {
 
 
 }
+
 
 const styles = StyleSheet.create({
   container: {

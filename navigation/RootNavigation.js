@@ -7,6 +7,7 @@ import registerForPushNotificationsAsync from '../api/registerForPushNotificatio
 import Post from '../screens/Post';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
+import Profile from '../screens/Profile';
 
 const RootStackNavigator = StackNavigator(
   {
@@ -15,6 +16,9 @@ const RootStackNavigator = StackNavigator(
     },
     Login: {
       screen: Login,
+    },
+    Profile: {
+      screen: Profile,
     },
     Signup: {
       screen: Signup,
