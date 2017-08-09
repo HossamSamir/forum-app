@@ -55,7 +55,7 @@ export default TabNavigator(
         return (
           <EvilIcons
             name={iconName}
-            size={28}
+            size={32}
             style={{ marginBottom: -3 }}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           />
@@ -67,6 +67,7 @@ export default TabNavigator(
     animationEnabled: true,
     swipeEnabled: true,
     tabBarOptions: {
+      showLabel: false,
       style: {
         backgroundColor: 'white',
         shadowColor: 'rgba(0,0,0,0.23)',

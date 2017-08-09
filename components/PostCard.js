@@ -16,7 +16,7 @@ export default class PostCard extends React.Component {
   render() {
     return (
       <View
-        style={{backgroundColor: 'white', width: 150, height: 200, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
+        style={{backgroundColor: 'white', width: 150, borderRadius: 10, marginRight: 20, marginTop: 18, overflow: 'hidden',}}>
         <View style={{backgroundColor: 'white', width: '100%', height: 130}}>
           <Image
             source={this.props.source}
