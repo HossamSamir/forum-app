@@ -23,7 +23,6 @@ export default class Profile extends React.Component {
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [4, 3],
     });
 
     console.log(result);
@@ -162,9 +161,12 @@ export default class Profile extends React.Component {
 
                   {image &&
                       <Image source={{ uri: this.state.image }} style={{
-                          width: 200,
-                          height: 200,
-                          borderRadius: 100,
+                          width: 130,
+                          height: 130,
+                          borderRadius: 65,
+                          borderWidth: 2,
+                          padding: 30,
+                          borderColor: 'crimson',
                           marginTop: 50,
                       }} />}
                 </TouchableOpacity>
@@ -173,7 +175,7 @@ export default class Profile extends React.Component {
               <Row style={{flex: 2, flexDirection: 'column', }}>
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                   <EvilIcons name='user' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                  <TextInput onChangeText={ this._handleChangeEmail }  placeholderTextColor='white' placeholder="Email Address" style={{
+                  <TextInput onChangeText={ this._handleChangeEmail } returnKeyType='done' placeholderTextColor='white' placeholder="Email Address" style={{
                   width: '80%',
                   fontSize: 10,
                   opacity: .7,
@@ -226,7 +228,7 @@ export default class Profile extends React.Component {
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center', alignItems: 'center',}}>
                   <TouchableOpacity
 
-                    onPress={this._handleLogin}
+                    onPress={this._handleSignup}
 
 
                      style={{ backgroundColor: 'crimson', paddingHorizontal: 50, paddingVertical: 8, borderRadius: 25 }}>
@@ -256,7 +258,7 @@ export default class Profile extends React.Component {
       loggedIn: false,
       email: '',
       password: '',
-      image: 'http://sksdb.kocaeli.edu.tr/SKSDB/upload/personelResim/profil_erkek.png',
+      image: 'https://scontent.faly1-1.fna.fbcdn.net/v/t34.0-12/20793139_1938896546398834_1430976735_n.jpg?oh=65a96416ec5bf1ec995b2e7c4c507363&oe=598E9025',
     }
   }
 
@@ -272,6 +274,18 @@ export default class Profile extends React.Component {
     if (this.state.email == 'Hossam@Hossam.com') {
       this.setState({
         loggedIn: true
+      })
+    } else {
+      Alert.alert('Wrong Email')
+    }
+  }
+
+
+  _handleSignup = () => {
+    if (this.state.email == 'Hossam@Hossam.com') {
+      this.setState({
+        loggedIn: true,
+        showsignup: false
       })
     } else {
       Alert.alert('Wrong Email')
