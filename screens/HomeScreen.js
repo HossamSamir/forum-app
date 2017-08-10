@@ -16,25 +16,7 @@ import Post from '../screens/Post';
 import PostCard from '../components/PostCard';
 import { MonoText } from '../components/StyledText';
 import { StackNavigator } from 'react-navigation';
-import SwipeableParallaxCarousel from 'react-native-swipeable-parallax-carousel';
 
-const datacarousel = [
-  {
-      "id": 339964,
-      "title": "Valerian and the City of a Thousand Planets",
-      "imagePath": "https://image.tmdb.org/t/p/w780/o6OhxtsgMurL4h68Uqei0aSPMNr.jpg",
-  },
-  {
-      "id": 315635,
-      "imagePath": "https://image.tmdb.org/t/p/w780/fn4n6uOYcB6Uh89nbNPoU2w80RV.jpg",
-  },
-  {
-      "id": 339403,
-      "title": "Baby Driver",
-      "subtitle": "More than just a trend",
-      "imagePath": "https://image.tmdb.org/t/p/w780/xWPXlLKSLGUNYzPqxDyhfij7bBi.jpg",
-  },
-];
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -54,12 +36,6 @@ static navigationOptions = {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <SwipeableParallaxCarousel
-          data={datacarousel}
-          navigation={true}
-          parallax={true}
-        />
-
         <ScrollView>
 
 

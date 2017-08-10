@@ -109,7 +109,7 @@ export default class Login extends React.Component {
               </Row>
 
               <Row style={{flex: .4, alignItems: 'center', justifyContent: 'center'}}>
-                <TouchableOpacity style={{ }}>
+                <TouchableOpacity>
                   <Text>Dont have an account? Sign up</Text>
                 </TouchableOpacity>
               </Row>
