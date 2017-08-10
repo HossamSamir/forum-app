@@ -14,9 +14,6 @@ import Notifications from '../screens/Notifications';
 
 export default TabNavigator(
   {
-    Profile: {
-      screen: Profile,
-    },
     Home: {
       screen: HomeScreen,
     },
@@ -28,6 +25,9 @@ export default TabNavigator(
     },
     Chat: {
       screen: Chat,
+    },
+    Profile: {
+      screen: Profile,
     },
   },
   {

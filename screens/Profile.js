@@ -16,7 +16,9 @@ import Post from './Post'
 import { StackNavigator } from 'react-navigation';
 import { Col, Row, Grid } from "react-native-easy-grid"
 import { EvilIcons } from '@expo/vector-icons';
-import { ImagePicker, Constants, LinearGradient, BlurView } from 'expo';
+import { ImagePicker, LinearGradient, BlurView } from 'expo';
+import PostCard from '../components/PostCard';
+
 
 export default class Profile extends React.Component {
 
@@ -131,10 +133,10 @@ export default class Profile extends React.Component {
                 source={require('../assets/images/profile-bg.jpg')}
                 style={{ width: '100%', height: '100%', position: 'absolute' }}
               />
-            <ScrollView>
+            <ScrollView style={{ paddingLeft: 20 }}>
               <View style={{ alignItems: 'center' }}>
                 <Image
-                  source={{ uri: 'file:///var/mobile/Containers/Data/Application/E11FACB1-7798-4865-9856-FF4F3B6822CC/Library/Caches/ExponentExperienceData/%2540hossamsamir%252Fforumapp/ImagePicker/B773739A-BE05-4CDC-80B3-A9690B39DE4F.jpg' }}
+                  source={{ uri: this.state.image }}
                   style={{
                     width: 130,
                     height: 130,
@@ -145,9 +147,92 @@ export default class Profile extends React.Component {
                     marginTop: 50,
                    }}
                 />
-              <Text style={{ marginTop: 20, backgroundColor: 'transparent', color: 'white', fontSize: 25, fontWeight: 'bold' }}>Hossam Samir</Text>
+              <Text style={{ marginTop: 20, backgroundColor: 'transparent', color: 'white', fontSize: 25, fontWeight: 'bold' }}>{ this.state.FullName }</Text>
               <Text style={{ marginVertical: 4, backgroundColor: 'transparent', color: 'white', opacity: .8, fontSize: 13 }}>Alexandria, Egypt</Text>
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+
+                {/* Badge */}
+                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <EvilIcons style={{ backgroundColor: 'white', padding: 10, borderRadius: 32, }} name='trophy' size={50} color='crimson' />
+                    <Text style={{ backgroundColor: 'white', padding: 5, borderRadius: 10 }}>Admin Badge</Text>
+                  </View>
+
+
+                {/* Badge */}
+                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <EvilIcons style={{ backgroundColor: 'white', padding: 10, borderRadius: 32, }} name='trophy' size={50} color='crimson' />
+                    <Text style={{ backgroundColor: 'white', padding: 5, borderRadius: 10 }}>Test Badge</Text>
+                  </View>
+
+
+                {/* Badge */}
+                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <EvilIcons style={{ backgroundColor: 'white', padding: 10, borderRadius: 32, }} name='trophy' size={50} color='crimson' />
+                    <Text style={{ backgroundColor: 'white', padding: 5, borderRadius: 10 }}>Test Badge</Text>
+                  </View>
+
+
+              </View>
             </View>
+
+            <Text style={{ backgroundColor: '#1F2D38', color: 'rgba(255, 255, 255, 0.8)', fontSize: 18, padding: 5, marginTop: 20, borderRadius: 10, width: 60, }}>Posts</Text>
+
+            <ScrollView horizontal={true}>
+
+              {/* Card Start */}
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate(
+                    'Post',
+                    {
+                      title: 'asfasg',
+                      imgsource: {uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg'},
+                      date: 'july 28, 2017',
+                    })}
+                >
+                  <PostCard
+                     title = 'liked post'
+                     source = {{ uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg' }}
+                     date = 'july 28, 2017' />
+                </TouchableOpacity>
+              {/* Card End */}
+
+              {/* Card Start */}
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate(
+                    'Post',
+                    {
+                      title: 'asfasg',
+                      imgsource: {uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg'},
+                      date: 'july 28, 2017',
+                    })}
+                >
+                  <PostCard
+                     title = 'liked post'
+                     source = {{ uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg' }}
+                     date = 'july 28, 2017' />
+                </TouchableOpacity>
+              {/* Card End */}
+
+              {/* Card Start */}
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate(
+                    'Post',
+                    {
+                      title: 'asfasg',
+                      imgsource: {uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg'},
+                      date: 'july 28, 2017',
+                    })}
+                >
+                  <PostCard
+                     title = 'liked post'
+                     source = {{ uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg' }}
+                     date = 'july 28, 2017' />
+                </TouchableOpacity>
+              {/* Card End */}
+
+            </ScrollView>
+
+
             </ScrollView>
             </View>
         ) // end of the return
@@ -206,7 +291,7 @@ export default class Profile extends React.Component {
 
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                   <EvilIcons name='lock' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                  <TextInput onChangeText={ this._handleChangePassword } placeholderTextColor='white' placeholder="Full Name" secureTextEntry={true} style={{
+                  <TextInput onChangeText={ this._handleChangeFullName } placeholderTextColor='white' placeholder="Full Name" style={{
                   width: '80%',
                   fontSize: 10,
                   opacity: .7,
@@ -273,15 +358,20 @@ export default class Profile extends React.Component {
     super(props)
     this.state = {
       showsignup: false,
-      loggedIn: true,
+      loggedIn: false,
       email: '',
       password: '',
+      FullName: '',
       image: 'https://scontent.faly1-1.fna.fbcdn.net/v/t34.0-12/20793139_1938896546398834_1430976735_n.jpg?oh=65a96416ec5bf1ec995b2e7c4c507363&oe=598E9025',
     }
   }
 
   _handleChangeEmail = (email) => {
     this.setState({ email })
+  }
+
+  _handleChangeFullName = (FullName) => {
+    this.setState({ FullName })
   }
 
   _handleChangePassword = (password) => {
