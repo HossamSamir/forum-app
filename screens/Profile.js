@@ -16,7 +16,7 @@ import Post from './Post'
 import { StackNavigator } from 'react-navigation';
 import { Col, Row, Grid } from "react-native-easy-grid"
 import { EvilIcons } from '@expo/vector-icons';
-import { ImagePicker } from 'expo';
+import { ImagePicker, Constants, LinearGradient, BlurView } from 'expo';
 
 export default class Profile extends React.Component {
 
@@ -123,15 +123,33 @@ export default class Profile extends React.Component {
           </KeyboardAvoidingView>
 
         ) // end of the return login
+
       } else { // show profile
         return (
-          <View>
-            <Text> Your profile </Text>
-            <Text> Your profile </Text>
-            <Text> Your profile </Text>
-            <Text> Your profile </Text>
-            <Text> Your profile </Text>
-          </View>
+            <View style={{ flex: 1 }}>
+              <Image
+                source={require('../assets/images/profile-bg.jpg')}
+                style={{ width: '100%', height: '100%', position: 'absolute' }}
+              />
+            <ScrollView>
+              <View style={{ alignItems: 'center' }}>
+                <Image
+                  source={{ uri: 'file:///var/mobile/Containers/Data/Application/E11FACB1-7798-4865-9856-FF4F3B6822CC/Library/Caches/ExponentExperienceData/%2540hossamsamir%252Fforumapp/ImagePicker/B773739A-BE05-4CDC-80B3-A9690B39DE4F.jpg' }}
+                  style={{
+                    width: 130,
+                    height: 130,
+                    borderRadius: 65,
+                    borderWidth: 2,
+                    padding: 30,
+                    borderColor: 'white',
+                    marginTop: 50,
+                   }}
+                />
+              <Text style={{ marginTop: 20, backgroundColor: 'transparent', color: 'white', fontSize: 25, fontWeight: 'bold' }}>Hossam Samir</Text>
+              <Text style={{ marginVertical: 4, backgroundColor: 'transparent', color: 'white', opacity: .8, fontSize: 13 }}>Alexandria, Egypt</Text>
+            </View>
+            </ScrollView>
+            </View>
         ) // end of the return
       }
     } else {
@@ -255,7 +273,7 @@ export default class Profile extends React.Component {
     super(props)
     this.state = {
       showsignup: false,
-      loggedIn: false,
+      loggedIn: true,
       email: '',
       password: '',
       image: 'https://scontent.faly1-1.fna.fbcdn.net/v/t34.0-12/20793139_1938896546398834_1430976735_n.jpg?oh=65a96416ec5bf1ec995b2e7c4c507363&oe=598E9025',
@@ -271,7 +289,7 @@ export default class Profile extends React.Component {
   }
 
   _handleLogin = () => {
-    if (this.state.email == 'Hossam@Hossam.com') {
+    if (this.state.email == '') {
       this.setState({
         loggedIn: true
       })
@@ -282,7 +300,7 @@ export default class Profile extends React.Component {
 
 
   _handleSignup = () => {
-    if (this.state.email == 'Hossam@Hossam.com') {
+    if (this.state.email == '') {
       this.setState({
         loggedIn: true,
         showsignup: false
@@ -314,6 +332,5 @@ export default class Profile extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   }
 })
