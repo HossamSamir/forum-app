@@ -14,14 +14,14 @@ import Notifications from '../screens/Notifications';
 
 export default TabNavigator(
   {
+    AddPost: {
+      screen: AddPost,
+    },
     Home: {
       screen: HomeScreen,
     },
     Notifications: {
       screen: Notifications,
-    },
-    AddPost: {
-      screen: AddPost,
     },
     Chat: {
       screen: Chat,
