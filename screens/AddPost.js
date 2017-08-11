@@ -139,46 +139,44 @@ export default class AddPost extends React.Component {
             placeholder="Tell a story" />
 
 
-            <TouchableOpacity onPress={ () => this.setState({ showCategoreis: true }) }>
-              <Text style = {styles.category}> category:</Text>
-            </TouchableOpacity>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={{ flex: 1 }}>
+              <TouchableOpacity onPress={ () => this.setState({ showCategoreis: true }) }>
+                <Text style = {styles.category}> category:</Text>
+              </TouchableOpacity>
 
-            <Picker style={styles.picker} selectedValue = {this.state.category} onValueChange = {this.updateCategory}>
-              <Picker.Item label = "Anime category 1" value = "Anime category 1" />
-              <Picker.Item label = "Anime category 2" value = "Anime category 2" />
-              <Picker.Item label = "Anime category 3" value = "Anime category 3" />
-              <Picker.Item label = "Anime category 4" value = "Anime category 4" />
-              <Picker.Item label = "Anime category 5" value = "Anime category 5" />
-              <Picker.Item label = "Anime category 6" value = "Anime category 6" />
-              <Picker.Item label = "Anime category 7" value = "Anime category 7" />
-              <Picker.Item label = "Anime category 8" value = "Anime category 8" />
-              <Picker.Item label = "Anime category 9" value = "Anime category 9" />
-            </Picker>
+              <Picker style={styles.picker} selectedValue = {this.state.category} onValueChange = {this.updateCategory}>
+                <Picker.Item label = "Anime" value = "Anime" />
+                <Picker.Item label = "Anime & Manga" value = "Anime & Manga" />
+                <Picker.Item label = "Anime category 3" value = "Anime category 3" />
+                <Picker.Item label = "Anime category 4" value = "Anime category 4" />
+              </Picker>
+            </View>
 
 
 
 
+            <View style={{ flex: 1 }}>
+              <TouchableOpacity onPress={ () => this.setState({ showCategoreis: true }) }>
+                <Text style = {styles.category}> subcategory:</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={ () => this.setState({ showCategoreis: true }) }>
-              <Text style = {styles.category}> subcategory:</Text>
-            </TouchableOpacity>
-
-            <Picker style={styles.picker} selectedValue = {this.state.category} onValueChange = {this.updateCategory}>
-              <Picker.Item label = "Anime category 1" value = "Anime category 1" />
-              <Picker.Item label = "Anime category 2" value = "Anime category 2" />
-              <Picker.Item label = "Anime category 3" value = "Anime category 3" />
-              <Picker.Item label = "Anime category 4" value = "Anime category 4" />
-              <Picker.Item label = "Anime category 5" value = "Anime category 5" />
-              <Picker.Item label = "Anime category 6" value = "Anime category 6" />
-              <Picker.Item label = "Anime category 7" value = "Anime category 7" />
-              <Picker.Item label = "Anime category 8" value = "Anime category 8" />
-              <Picker.Item label = "Anime category 9" value = "Anime category 9" />
-            </Picker>
+              <Picker style={styles.picker} selectedValue = {this.state.subcategory} onValueChange = {this.updatesubCategory}>
+                <Picker.Item label = "Anime subCat. #1" value = "Anime subCat. #1" />
+                <Picker.Item label = "Anime subCat. #2" value = "Anime subCat. #2" />
+                <Picker.Item label = "Anime subCat. #3" value = "Anime subCat. #3" />
+                <Picker.Item label = "Anime subCat. #4" value = "Anime subCat. #4" />
+                <Picker.Item label = "Anime subCat. #5" value = "Anime subCat. #5" />
+              </Picker>
+            </View>
+          </View>
 
 
 
 
-
+          <TouchableOpacity onPress={ () => Alert.alert('Published! :D') }>
+            <Text style={styles.publish}>Publish</Text>
+          </TouchableOpacity>
 
 
         </ScrollView>
@@ -196,13 +194,14 @@ const styles = StyleSheet.create({
   },
   category: {
       fontSize: 20,
-      marginTop: 50,
-      marginBottom: -100
+      marginTop: 100,
    },
-  subcategorystyle: {
-      fontSize: 20,
-      marginBottom: -150
-   },
-   picker: {
+   publish: {
+     fontSize: 28,
+     color: 'green',
+     borderColor: 'green',
+     borderWidth: 1,
+     padding: 8,
+     borderRadius: 10
    }
 });
