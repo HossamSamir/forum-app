@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native';
 import { ImagePicker } from 'expo';
+import { EvilIcons } from '@expo/vector-icons';
 
 
 export default class AddPost extends React.Component {
@@ -174,8 +175,8 @@ export default class AddPost extends React.Component {
 
 
 
-          <TouchableOpacity onPress={ () => Alert.alert('Published! :D') }>
-            <Text style={styles.publish}>Publish</Text>
+          <TouchableOpacity style={{ marginVertical: 10, borderRadius: 10, borderColor: 'green', borderWidth: 1, alignItems: 'center', justifyContent: 'center' }} onPress={ () => Alert.alert('Published! :D') }>
+              <Text style={styles.publish}>Publish</Text>
           </TouchableOpacity>
 
 
@@ -197,11 +198,9 @@ const styles = StyleSheet.create({
       marginTop: 100,
    },
    publish: {
+     flex: 1,
      fontSize: 28,
      color: 'green',
-     borderColor: 'green',
-     borderWidth: 1,
-     padding: 8,
-     borderRadius: 10
+     paddingVertical: 8
    }
 });
