@@ -25,6 +25,8 @@ export default class AddPost extends React.Component {
     super(props);
     this.state = {
       image: 'https://support.e2ma.net/@api/deki/files/783/placeholder.png?revision=1&size=bestfit&width=468&height=186',
+      title: '',
+      description: '',
       category: '',
       subcategory: '',
       showCategoreis: false,
@@ -90,6 +92,18 @@ export default class AddPost extends React.Component {
       }
     }
 
+    _handlePublish = () => {
+      this.setState({
+        image: 'https://support.e2ma.net/@api/deki/files/783/placeholder.png?revision=1&size=bestfit&width=468&height=186',
+        category: 'Anime',
+        subcategory: 'Anime subCat. #1'
+       })
+      this.refs['titleInput'].setNativeProps({text: ''});
+      this.refs['descriptionInput'].setNativeProps({text: ''});
+      Alert.alert('published :D !')
+    }
+
+
   static navigationOptions = {
     header: null,
   };
@@ -107,6 +121,8 @@ export default class AddPost extends React.Component {
 
 
           <TextInput
+            onCHangeText={(title) => this.setState({ title })}
+            ref='titleInput'
             selectionColor='crimson'
             returnKeyType = {"next"}
             keyboardAppearance='dark'
@@ -123,7 +139,9 @@ export default class AddPost extends React.Component {
             }}
             placeholder="Type a title" />
 
+
           <TextInput
+            onChangeText={(description) => this.setState({ description })}
             ref='descriptionInput'
             keyboardAppearance='dark'
             multiline={true}
@@ -175,7 +193,8 @@ export default class AddPost extends React.Component {
 
 
 
-          <TouchableOpacity style={{ marginVertical: 10, borderRadius: 10, borderColor: 'green', borderWidth: 1, alignItems: 'center', justifyContent: 'center' }} onPress={ () => Alert.alert('Published! :D') }>
+          <TouchableOpacity style={{ marginVertical: 10, borderRadius: 10, borderColor: 'green', borderWidth: 1, alignItems: 'center', justifyContent: 'center' }}
+            onPress={ this._handlePublish }>
               <Text style={styles.publish}>Publish</Text>
           </TouchableOpacity>
 
