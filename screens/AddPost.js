@@ -56,41 +56,6 @@ export default class AddPost extends React.Component {
       this.setState({ subcategory: subcategory })
     }
 
-    _categories = () => {
-      if (this.state.showCategoreis) {
-        return (
-            <Picker style={styles.picker} selectedValue = {this.state.category} onValueChange = {this.updateCategory}>
-              <Picker.Item label = "Anime category 1" value = "Anime category 1" />
-              <Picker.Item label = "Anime category 2" value = "Anime category 2" />
-              <Picker.Item label = "Anime category 3" value = "Anime category 3" />
-              <Picker.Item label = "Anime category 4" value = "Anime category 4" />
-              <Picker.Item label = "Anime category 5" value = "Anime category 5" />
-              <Picker.Item label = "Anime category 6" value = "Anime category 6" />
-              <Picker.Item label = "Anime category 7" value = "Anime category 7" />
-              <Picker.Item label = "Anime category 8" value = "Anime category 8" />
-              <Picker.Item label = "Anime category 9" value = "Anime category 9" />
-            </Picker>
-        );
-      }
-    }
-
-    _subcategories = () => {
-      if (this.state.showsubCategoreis) {
-        return (
-            <Picker style={styles.picker} selectedValue = {this.state.subcategory} onValueChange = {this.updatesubCategory}>
-              <Picker.Item label = "Anime subcategory 1" value = "Anime subcategory 1" />
-              <Picker.Item label = "Anime subcategory 2" value = "Anime subcategory 2" />
-              <Picker.Item label = "Anime subcategory 3" value = "Anime subcategory 3" />
-              <Picker.Item label = "Anime subcategory 4" value = "Anime subcategory 4" />
-              <Picker.Item label = "Anime subcategory 5" value = "Anime subcategory 5" />
-              <Picker.Item label = "Anime subcategory 6" value = "Anime subcategory 6" />
-              <Picker.Item label = "Anime subcategory 7" value = "Anime subcategory 7" />
-              <Picker.Item label = "Anime subcategory 8" value = "Anime subcategory 8" />
-              <Picker.Item label = "Anime subcategory 9" value = "Anime subcategory 9" />
-            </Picker>
-        );
-      }
-    }
 
     _handlePublish = () => {
       this.setState({
