@@ -1,36 +1,82 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Image,
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
-  Button,
-  Alert
+  Alert,
+  ListView
 } from 'react-native';
+import { Container, Header, Content, Button, Icon, List, ListItem, Text } from 'native-base';
 import { StackNavigator } from 'react-navigation';
 
+const datas = [
+  'Simon Mignolet',
+  'Nathaniel Clyne',
+  'Dejan Lovren',
+  'Mama Sakho',
+  'Alberto Moreno',
+  'Emre Can',
+  'Joe Allen',
+  'Phil Coutinho',
+];
 
-export default class Notifications extends React.Component {
+export default class Notifications extends Component {
 
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      NotsExists: false
-    }
+      basic: true,
+      listViewData: datas,
+      NotsExists: true
+    };
   }
 
+  deleteRow(secId, rowId, rowMap) {
+    rowMap[`${secId}${rowId}`].props.closeRow();
+    const newData = [...this.state.listViewData];
+    newData.splice(rowId, 1);
+    this.setState({ listViewData: newData });
+  }
 
-    _handleShowNotifications = () => {
-      Alert.alert('asf')
-    }
+  _handleShowNotifications = () => {
+     this.setState({
+       NotsExists: true
+     });
+   }
 
-    _NotificationsPlaceholder = () => {
+   _NotificationsPlaceholder = () => {
       if (this.state.NotsExists == true) {
         return (
-        console.log('true')
+        <View style={{
+              flex: 1,
+              flexDirection: 'row'
+            }}>
+            <List
+              style={{
+                width: '100%',
+                marginTop: 20,
+                }}
+              dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+              renderRow={data =>
+                <ListItem style={{
+                  width: '100%',
+                  backgroundColor: 'crimson'
+                  }}>
+                  <Text> {data} </Text>
+                </ListItem>}
+              renderLeftHiddenRow={data => {}}
+              renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+                <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                  <Icon active name="trash" />
+                </Button>}
+              leftOpenValue={.1}
+              rightOpenValue={-75}
+            />
+      </View>
       )
       } else {
         return (
@@ -51,15 +97,14 @@ export default class Notifications extends React.Component {
     };
 
   render() {
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <View style={styles.container}>
         { this._NotificationsPlaceholder() }
       </View>
     );
   }
-
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -67,6 +112,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20/2
   }
 });
