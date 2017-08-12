@@ -9,7 +9,7 @@ import {
   Alert,
   ListView
 } from 'react-native';
-import { Container, Header, Content, Button, Icon, List, ListItem, Text } from 'native-base';
+import { Container, Header, Content, Button, Icon, List, ListItem, Text, Left, Body, Right, Thumbnail } from 'native-base';
 import { StackNavigator } from 'react-navigation';
 
 const datas = [
@@ -53,7 +53,8 @@ export default class Notifications extends Component {
         return (
         <View style={{
               flex: 1,
-              flexDirection: 'row'
+              flexDirection: 'row',
+              marginHorizontal: 10
             }}>
             <List
               style={{
@@ -62,15 +63,24 @@ export default class Notifications extends Component {
                 }}
               dataSource={this.ds.cloneWithRows(this.state.listViewData)}
               renderRow={data =>
-                <ListItem style={{
+                <ListItem avatar style={{
                   width: '100%',
-                  backgroundColor: 'crimson'
+                  marginVertical: 6,
                   }}>
-                  <Text> {data} </Text>
+                  <Left>
+                    <Thumbnail source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }} />
+                  </Left>
+                  <Body>
+                    <Text> {data} </Text>
+                    <Text note>Did something..</Text>
+                  </Body>
+                  <Right>
+                    <Text note>3:43 pm</Text>
+                  </Right>
                 </ListItem>}
               renderLeftHiddenRow={data => {}}
               renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                <Button style={{ marginVertical: 6 }} full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
                   <Icon active name="trash" />
                 </Button>}
               leftOpenValue={.1}
