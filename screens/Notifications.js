@@ -22,16 +22,10 @@ export default class Notifications extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>The code is yours ✌🏻</Text>
-        <Text>The code is yours ✌🏻</Text>
-        <Text>The code is yours ✌🏻</Text>
-        <Text>The code is yours ✌🏻</Text>
-        <Text>The code is yours ✌🏻</Text>
-        <Text>The code is yours ✌🏻</Text>
-        <Text>The code is yours ✌🏻</Text>
-        <Text>The code is yours ✌🏻</Text>
-        <Text>The code is yours ✌🏻</Text>
+      <View style={styles.container}>
+        <Image source={require('../assets/images/illustration.jpg')} style={{ width: 150, height: 150 }} />
+        <Text style={{ color: '#9a9b9f', fontWeight: 'bold', fontSize: 23 }}>Nothing here!!!</Text>
+        <Text style={{ color: '#d1d1d1', fontSize: 13 }}>Tab the notifications button below to add a fake test notifications to check them</Text>
       </View>
     );
   }
@@ -40,5 +34,10 @@ export default class Notifications extends React.Component {
 
 
 const styles = StyleSheet.create({
-
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
