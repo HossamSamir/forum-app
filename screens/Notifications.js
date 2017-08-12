@@ -13,10 +13,9 @@ import { Container, Header, Content, Button, Icon, List, ListItem, Text, Left, B
 import { StackNavigator } from 'react-navigation';
 
 const datas = [
-  'Simon Mignolet',
-  'Nathaniel Clyne',
+  'Hossam Samir',
+  'Ahmed Clyne',
   'Dejan Lovren',
-  'Mama Sakho',
   'Alberto Moreno',
   'Emre Can',
   'Joe Allen',
@@ -31,7 +30,7 @@ export default class Notifications extends Component {
     this.state = {
       basic: true,
       listViewData: datas,
-      NotsExists: true
+      NotsExists: false
     };
   }
 
@@ -54,7 +53,6 @@ export default class Notifications extends Component {
         <View style={{
               flex: 1,
               flexDirection: 'row',
-              marginHorizontal: 10
             }}>
             <List
               style={{
@@ -72,10 +70,10 @@ export default class Notifications extends Component {
                   </Left>
                   <Body>
                     <Text> {data} </Text>
-                    <Text note>Did something..</Text>
+                    <Text note> Liked Your Post</Text>
                   </Body>
                   <Right>
-                    <Text note>3:43 pm</Text>
+                    <Text note>8 mins ago</Text>
                   </Right>
                 </ListItem>}
               renderLeftHiddenRow={data => {}}
@@ -122,5 +120,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 10
   }
 });
