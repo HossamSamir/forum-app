@@ -77,13 +77,15 @@ export default class Chat extends Component {
    _NotificationsPlaceholder = () => {
       if (this.state.showChat == true) {
         return (
-          <GiftedChat
-            style={{ backgroundColor: 'crimson', flex: 1 }}
-            messages={this.state.messages}
-            onSend={(messages) => this.onSend(messages)}
-            user={{
-              _id: 1,
-          }} />
+          <View style={{ width: '100%', height: '100%' }}>
+            <GiftedChat
+              style={{ backgroundColor: 'crimson', flex: 1 }}
+              messages={this.state.messages}
+              onSend={(messages) => this.onSend(messages)}
+              user={{
+                _id: 1,
+            }} />
+          </View>
       )
       } else {
         return (
