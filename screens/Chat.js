@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Container, Header, Content, Button, Icon, List, ListItem, Text, Left, Body, Right, Thumbnail } from 'native-base';
 import { StackNavigator } from 'react-navigation';
+import { GiftedChat } from 'react-native-gifted-chat';
 
 const datas = [
   'Hossam Samir',
@@ -30,9 +31,35 @@ export default class Chat extends Component {
     this.state = {
       basic: true,
       listViewData: datas,
-      showChat: false
+      showChat: true,
+      messages: [],
     };
   }
+
+
+  componentWillMount() {
+      this.setState({
+        messages: [
+          {
+            _id: 1,
+            text: 'Hello Admin 👍🏻💥 !',
+            createdAt: new Date(),
+            user: {
+              _id: 2,
+              name: 'Developer',
+              avatar: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460',
+            },
+          },
+        ],
+      });
+    }
+
+    onSend(messages = []) {
+      this.setState((previousState) => ({
+        messages: GiftedChat.append(previousState.messages, messages),
+      }));
+    }
+
 
   deleteRow(secId, rowId, rowMap) {
     rowMap[`${secId}${rowId}`].props.closeRow();
@@ -50,14 +77,13 @@ export default class Chat extends Component {
    _NotificationsPlaceholder = () => {
       if (this.state.showChat == true) {
         return (
-          <View style={styles.container}>
-            <Image source={require('../assets/images/illustration.jpg')} style={{ width: 150, height: 150 }} />
-            <Text style={{ color: '#9a9b9f', fontWeight: 'bold', fontSize: 23 }}>Nothing here!!!</Text>
-            <Text style={{ textAlign: 'center', color: '#d1d1d1', fontSize: 16, marginTop: 15 }}>Tab the notifications button below to add a fake test notifications to check them</Text>
-            <TouchableOpacity onPress={this._handleShowChat}>
-              <Text style={{ color: 'white', backgroundColor: '#ff717f', marginTop: 20, borderRadius: 8, paddingHorizontal: 20, paddingVertical: 10 }}>Fake Notifications</Text>
-            </TouchableOpacity>
-          </View>
+          <GiftedChat
+            style={{ backgroundColor: 'crimson', flex: 1 }}
+            messages={this.state.messages}
+            onSend={(messages) => this.onSend(messages)}
+            user={{
+              _id: 1,
+          }} />
       )
       } else {
         return (
@@ -72,7 +98,9 @@ export default class Chat extends Component {
                   }}
                 dataSource={this.ds.cloneWithRows(this.state.listViewData)}
                 renderRow={data =>
-                  <ListItem avatar style={{
+                  <ListItem avatar
+                    onPress={ this._handleShowChat }
+                    style={{
                     width: '100%',
                     marginVertical: 6,
                     }}>
