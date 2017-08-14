@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import Post from '../screens/Post';
-import Subcat from '../screens/Subcat';
 import PostCard from '../components/PostCard';
 import { MonoText } from '../components/StyledText';
 import { StackNavigator } from 'react-navigation';
@@ -25,47 +24,99 @@ export default class HomeScreen extends React.Component {
     this.state = {
       title: 'this is a title',
       imgsource: {uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg'},
-      date: 'july 28, 2017',
-      categoreyTitle: 'Anime & Manga'
+      date: 'july 28, 2017'
     }
   }
 
-static navigationOptions = {
-    header: null
-  };
+  static navigationOptions = ({navigation}) => ({
+      title: navigation.state.params.title,
+    });
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
+        <ScrollView horizontal={true}>
+
+          <TouchableOpacity style={{ marginHorizontal: 6 }}
+            onPress={() => navigate(
+              'Post',
+              {
+                title: 'asags'
+              })}
+            >
+            <Image
+              style={{
+                width: 130,
+                height: 70,
+                borderRadius: 15,
+                alignItems: 'center',
+                justifyContent: 'center',
+               }}
+              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjU3-XFrnu8szUNxHWq3yUl1RfSKgd0rtOhZ6teq2dNyXYGhKO' }} />
+            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: 'transparent', fontSize: 20, position: 'absolute', width: '100%', textAlign: 'center', top: 20 }}>Romance</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ marginHorizontal: 6 }} onPress={ () => Alert.alert('asf') }>
+            <Image
+              style={{
+                width: 130,
+                height: 70,
+                borderRadius: 15,
+                alignItems: 'center',
+                justifyContent: 'center',
+               }}
+              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjU3-XFrnu8szUNxHWq3yUl1RfSKgd0rtOhZ6teq2dNyXYGhKO' }} />
+            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: 'transparent', fontSize: 20, position: 'absolute', width: '100%', textAlign: 'center', top: 20 }}>Sad</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ marginHorizontal: 6 }} onPress={ () => Alert.alert('asf') }>
+            <Image
+              style={{
+                width: 130,
+                height: 70,
+                borderRadius: 15,
+                alignItems: 'center',
+                justifyContent: 'center',
+               }}
+              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjU3-XFrnu8szUNxHWq3yUl1RfSKgd0rtOhZ6teq2dNyXYGhKO' }} />
+            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: 'transparent', fontSize: 20, position: 'absolute', width: '100%', textAlign: 'center', top: 20 }}>test</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ marginHorizontal: 6 }} onPress={ () => Alert.alert('asf') }>
+            <Image
+              style={{
+                width: 130,
+                height: 70,
+                borderRadius: 15,
+                alignItems: 'center',
+                justifyContent: 'center',
+               }}
+              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjU3-XFrnu8szUNxHWq3yUl1RfSKgd0rtOhZ6teq2dNyXYGhKO' }} />
+            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: 'transparent', fontSize: 20, position: 'absolute', width: '100%', textAlign: 'center', top: 20 }}>test</Text>
+          </TouchableOpacity>
+
+        </ScrollView>
+
         <ScrollView>
 
 
           <TouchableOpacity
             onPress={() => navigate(
-              'Subcat',
+              'Post',
               {
-                title: this.state.categoreyTitle,
+                title: this.state.title,
+                imgsource: this.state.imgsource,
+                date: this.state.date,
               })}
           >
             <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-              { this.state.categoreyTitle }
+              Anime & Manga
             </Text>
           </TouchableOpacity>
           <ScrollView horizontal={true}>
 
             <TouchableOpacity
-              // onPress={() => {
-                // getting data from the server
-                // fetch('https://forum-app-api.herokuapp.com/api/post?post_id=41').then((res) => console.log(res))
-                // navigate(
-                //   'Post',
-                //   {
-                //     title: this.state.title,
-                //     imgsource: this.state.imgsource,
-                //     date: this.state.date,
-                //   })
-              // }}
               onPress={() => navigate(
                 'Post',
                 {

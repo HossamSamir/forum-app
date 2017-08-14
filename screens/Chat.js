@@ -111,7 +111,7 @@ export default class Chat extends Component {
                     </Left>
                     <Body>
                       <Text> {data} </Text>
-                      <Text note> Liked Your Post</Text>
+                      <Text note> heyy, how r u?</Text>
                     </Body>
                     <Right>
                       <Text note>8 mins ago</Text>

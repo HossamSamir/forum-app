@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation';
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import Post from '../screens/Post';
+import Subcat from '../screens/Subcat';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 import Profile from '../screens/Profile';
@@ -25,6 +26,9 @@ const RootStackNavigator = StackNavigator(
     },
     Post: {
       screen: Post,
+    },
+    Subcat: {
+      screen: Subcat,
     },
   },
   {
