@@ -40,7 +40,13 @@ static navigationOptions = {
       <View style={styles.container}>
         <ScrollView>
 
-
+          {
+            /*
+             ---------------------
+            |   CATEGOREY START   |
+             ---------------------
+            */
+          }
           <TouchableOpacity
             onPress={() => navigate(
               'Subcat',
@@ -52,131 +58,211 @@ static navigationOptions = {
               { this.state.categoreyTitle }
             </Text>
           </TouchableOpacity>
-          <ScrollView horizontal={true}>
+          <ScrollView style={{ marginBottom: 30 }} horizontal={true}>
+            {/* CARD */}
+              <TouchableOpacity
+                // onPress={() => {
+                  // getting data from the server
+                  // fetch('https://forum-app-api.herokuapp.com/api/post?post_id=41').then((res) => console.log(res))
+                  // navigate(
+                  //   'Post',
+                  //   {
+                  //     title: this.state.title,
+                  //     imgsource: this.state.imgsource,
+                  //     date: this.state.date,
+                  //   })
+                // }}
+                onPress={() => navigate(
+                  'Post',
+                  {
+                    title: this.state.title,
+                    imgsource: this.state.imgsource,
+                    date: this.state.date,
+                  })}
+              >
+                <PostCard
+                   title = {this.state.title}
+                   source = {this.state.imgsource}
+                   date = {this.state.date} />
+            </TouchableOpacity>
 
+            {/* CARD */}
+              <TouchableOpacity
+                // onPress={() => {
+                  // getting data from the server
+                  // fetch('https://forum-app-api.herokuapp.com/api/post?post_id=41').then((res) => console.log(res))
+                  // navigate(
+                  //   'Post',
+                  //   {
+                  //     title: this.state.title,
+                  //     imgsource: this.state.imgsource,
+                  //     date: this.state.date,
+                  //   })
+                // }}
+                onPress={() => navigate(
+                  'Post',
+                  {
+                    title: this.state.title,
+                    imgsource: this.state.imgsource,
+                    date: this.state.date,
+                  })}
+              >
+                <PostCard
+                   title = {this.state.title}
+                   source = {this.state.imgsource}
+                   date = {this.state.date} />
+            </TouchableOpacity>
+
+            {/* SEE MORE CARD */}
             <TouchableOpacity
-              // onPress={() => {
-                // getting data from the server
-                // fetch('https://forum-app-api.herokuapp.com/api/post?post_id=41').then((res) => console.log(res))
-                // navigate(
-                //   'Post',
-                //   {
-                //     title: this.state.title,
-                //     imgsource: this.state.imgsource,
-                //     date: this.state.date,
-                //   })
-              // }}
               onPress={() => navigate(
-                'Post',
+                'Subcat',
                 {
-                  title: this.state.title,
-                  imgsource: this.state.imgsource,
-                  date: this.state.date,
+                  title: this.state.categoreyTitle,
                 })}
             >
               <PostCard
-                 title = {this.state.title}
-                 source = {this.state.imgsource}
-                 date = {this.state.date} />
+                title = 'see more'
+                source = {require('../assets/images/see-more.png')}
+                date = '...' />
+            </TouchableOpacity>
+          </ScrollView>
+          {
+            /*
+             -------------------
+            |   CATEGOREY END   |
+             -------------------
+            */
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          {
+            /*
+             ---------------------
+            |   CATEGOREY START   |
+             ---------------------
+            */
+          }
+          <TouchableOpacity
+            onPress={() => navigate(
+              'Subcat',
+              {
+                title: this.state.categoreyTitle,
+              })}
+          >
+            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+              { this.state.categoreyTitle }
+            </Text>
+          </TouchableOpacity>
+          <ScrollView style={{ marginBottom: 30 }} horizontal={true}>
+            {/* CARD */}
+              <TouchableOpacity
+                // onPress={() => {
+                  // getting data from the server
+                  // fetch('https://forum-app-api.herokuapp.com/api/post?post_id=41').then((res) => console.log(res))
+                  // navigate(
+                  //   'Post',
+                  //   {
+                  //     title: this.state.title,
+                  //     imgsource: this.state.imgsource,
+                  //     date: this.state.date,
+                  //   })
+                // }}
+                onPress={() => navigate(
+                  'Post',
+                  {
+                    title: this.state.title,
+                    imgsource: this.state.imgsource,
+                    date: this.state.date,
+                  })}
+              >
+                <PostCard
+                   title = {this.state.title}
+                   source = {this.state.imgsource}
+                   date = {this.state.date} />
             </TouchableOpacity>
 
+            {/* CARD */}
+              <TouchableOpacity
+                // onPress={() => {
+                  // getting data from the server
+                  // fetch('https://forum-app-api.herokuapp.com/api/post?post_id=41').then((res) => console.log(res))
+                  // navigate(
+                  //   'Post',
+                  //   {
+                  //     title: this.state.title,
+                  //     imgsource: this.state.imgsource,
+                  //     date: this.state.date,
+                  //   })
+                // }}
+                onPress={() => navigate(
+                  'Post',
+                  {
+                    title: this.state.title,
+                    imgsource: this.state.imgsource,
+                    date: this.state.date,
+                  })}
+              >
+                <PostCard
+                   title = {this.state.title}
+                   source = {this.state.imgsource}
+                   date = {this.state.date} />
+            </TouchableOpacity>
 
-
-
+            {/* SEE MORE CARD */}
             <TouchableOpacity
               onPress={() => navigate(
-                'Post',
+                'Subcat',
                 {
-                  title: this.state.title,
-                  imgsource: this.state.imgsource,
-                  date: this.state.date,
+                  title: this.state.categoreyTitle,
                 })}
             >
               <PostCard
-                 title = {this.state.title}
-                 source = {this.state.imgsource}
-                 date = {this.state.date} />
+                title = 'see more'
+                source = {require('../assets/images/see-more.png')}
+                date = '...' />
             </TouchableOpacity>
-
-
-
-
-            <TouchableOpacity
-              onPress={() => navigate(
-                'Post',
-                {
-                  title: this.state.title,
-                  imgsource: this.state.imgsource,
-                  date: this.state.date,
-                })}
-            >
-              <PostCard
-                 title = {this.state.title}
-                 source = {this.state.imgsource}
-                 date = {this.state.date} />
-            </TouchableOpacity>
-
-
-
-
-
-
-            <PostCard
-              title = 'see more'
-              source = {require('../assets/images/see-more.png')}
-              date = '...' />
           </ScrollView>
+          {
+            /*
+             -------------------
+            |   CATEGOREY END   |
+             -------------------
+            */
+          }
 
 
 
 
 
-          <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold', marginTop: 50}}>
-            MyAnimeList
-          </Text>
-
-          <ScrollView horizontal={true}>
-            <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic2.jpg')}
-               date = 'july 28, 2017' />
-            <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic5.jpg')}
-               date = 'july 28, 2017' />
-            <PostCard
-              title = 'see more'
-              source = {require('../assets/images/see-more.png')}
-              date = '...' />
-          </ScrollView>
 
 
 
 
-          <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold', marginTop: 50}}>
-            heres another categorey
-          </Text>
 
-          <ScrollView horizontal={true}>
-            <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic3.jpg')}
-               date = 'july 28, 2017' />
-            <PostCard
-               title = 'Kanon Character and Endin...'
-               source = {require('../assets/images/post-pic6.jpg')}
-               date = 'july 28, 2017' />
-            <PostCard
-               title = 'see more'
-               source = {require('../assets/images/see-more.png')}
-               date = '...' />
-          </ScrollView>
+
+
+
 
 
 
 
         </ScrollView>
-
       </View>
     );
   }
