@@ -97,11 +97,67 @@ export default class Post extends React.Component {
                       <Text> </Text>
                     </TouchableHighlight>
 
-                 <View style={{ flex: 1.5, width: '100%', backgroundColor: 'white' }}>
-                  <ScrollView>
-                    <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
-                      style={{ width: 80, height: 80, borderRadius: 40 }}
-                     />
+                 <View style={{
+                     flex: .8,
+                     width: '100%',
+                     backgroundColor: 'white',
+                     shadowColor: "#000000",
+                     shadowOpacity: 0.8,
+                     shadowRadius: 2,
+                     shadowOffset: {
+                       height: 1,
+                       width: 0
+                     },
+                     }}>
+                  <ScrollView style={{
+                      flex: 3,
+                     }}>
+
+                    {/* Comment */}
+                    <View style={{ padding: 10, flexDirection: 'row' }}>
+                      <View style={{ flex: 1 }}>
+                        <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
+                          style={{ width: 55, height: 55, borderRadius: 27.5 }}
+                         />
+                      </View>
+                     <Text style={{ flex: 3 }}>
+                       <Text style={{ fontWeight: 'bold' }}>Hossam Samir </Text>
+                       Really beatiful anime, I really want to go back to that place and bring my friends!
+                       <Text style={{ color: '#D8DBDE' }}>{'\n 10m ago'}</Text>
+                     </Text>
+                    </View>
+                    {/* Comment */}
+
+                    {/* Comment */}
+                    <View style={{ padding: 10, flexDirection: 'row' }}>
+                      <View style={{ flex: 1 }}>
+                        <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
+                          style={{ width: 55, height: 55, borderRadius: 27.5 }}
+                         />
+                      </View>
+                     <Text style={{ flex: 3 }}>
+                       <Text style={{ fontWeight: 'bold' }}>Hossam Samir </Text>
+                       Really beatiful anime, I really want to go back to that place and bring my friends!
+                       <Text style={{ color: '#D8DBDE' }}>{'\n 10m ago'}</Text>
+                     </Text>
+                    </View>
+                    {/* Comment */}
+
+                    {/* Comment */}
+                    <View style={{ padding: 10, flexDirection: 'row' }}>
+                      <View style={{ flex: 1 }}>
+                        <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
+                          style={{ width: 55, height: 55, borderRadius: 27.5 }}
+                         />
+                      </View>
+                     <Text style={{ flex: 3 }}>
+                       <Text style={{ fontWeight: 'bold' }}>Hossam Samir </Text>
+                       Really beatiful anime, I really want to go back to that place and bring my friends!
+                       <Text style={{ color: '#D8DBDE' }}>{'\n 10m ago'}</Text>
+                     </Text>
+                    </View>
+                    {/* Comment */}
+
                   </ScrollView>
                  </View>
                 </Modal>
