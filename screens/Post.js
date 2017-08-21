@@ -8,13 +8,25 @@ import {
   TouchableOpacity,
   View,
   Button,
-  Alert
+  Alert,
+  Modal,
+  TouchableHighlight
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { MonoText } from '../components/StyledText';
 import { EvilIcons } from '@expo/vector-icons';
 
 export default class Post extends React.Component {
+
+  state = {
+    modalVisible: true,
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
+
   static navigationOptions = {
       header: null
     };
@@ -22,6 +34,7 @@ export default class Post extends React.Component {
     const { params } = this.props.navigation.state;
     return (
       <ScrollView style={styles.container}>
+
         <Image
           source={params.imgsource}
           style={{
@@ -49,12 +62,51 @@ export default class Post extends React.Component {
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
         </Text>
         <View style={{height: 50, marginTop: 30, borderTopColor: '#F2F2F2', borderTopWidth: 2, flexDirection: 'row', alignItems: 'center'}}>
-          <EvilIcons name='heart' size={35} style={{backgroundColor: 'transparent', flex: .16,}} />
-          <EvilIcons name='comment' size={35} style={{backgroundColor: 'transparent', flex: .16}} />
-          <EvilIcons name='share-apple' size={35} style={{backgroundColor: 'transparent', flex: .16}} />
+
+          <TouchableOpacity style={{ flex: .16 }}>
+            <EvilIcons name='heart' size={35} style={{backgroundColor: 'transparent',}} />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flex: .16 }} onPress={() => {
+            this.setModalVisible(true)
+          }}>
+            <EvilIcons name='comment' size={35} style={{backgroundColor: 'transparent',}} />
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{ flex: .16 }}>
+          <EvilIcons name='share-apple' size={35} style={{backgroundColor: 'transparent',}} />
+          </TouchableOpacity>
+
           <Text style={{backgroundColor: 'transparent', color: '#C1C1C1', flex: .3}}> 153 Likes</Text>
           <Text style={{backgroundColor: 'transparent', color: '#C1C1C1', flex: .5}}> 10 Responnses</Text>
         </View>
+
+
+        <View>
+                <Modal
+                  animationType={"slide"}
+                  transparent={true}
+                  visible={this.state.modalVisible}
+                  onRequestClose={() => {alert("Modal has been closed.")}}
+                  >
+
+                    <TouchableHighlight style={{ flex: 1, width: '100%' }} onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible)
+                    }}>
+                      <Text> </Text>
+                    </TouchableHighlight>
+
+                 <View style={{ flex: 1.5, width: '100%', backgroundColor: 'white' }}>
+                  <ScrollView>
+                    <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
+                      style={{ width: 80, height: 80, borderRadius: 40 }}
+                     />
+                  </ScrollView>
+                 </View>
+                </Modal>
+              </View>
+
 
 
 

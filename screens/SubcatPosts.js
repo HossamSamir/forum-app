@@ -12,8 +12,8 @@ import {
   ListView
 } from 'react-native';
 import { WebBrowser } from 'expo';
-import Post from '../screens/Post';
 import SubcatPosts from '../screens/SubcatPosts';
+import Post from '../screens/Post';
 import PostCard from '../components/PostCard';
 import { MonoText } from '../components/StyledText';
 import { StackNavigator } from 'react-navigation';
@@ -37,71 +37,7 @@ export default class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <ScrollView horizontal={true}>
-
-          <TouchableOpacity style={{ marginHorizontal: 6 }}
-            onPress={() => navigate(
-              'SubcatPosts',
-              {
-                title: 'asags'
-              })}
-            >
-            <Image
-              style={{
-                width: 130,
-                height: 70,
-                borderRadius: 15,
-                alignItems: 'center',
-                justifyContent: 'center',
-               }}
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjU3-XFrnu8szUNxHWq3yUl1RfSKgd0rtOhZ6teq2dNyXYGhKO' }} />
-            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: 'transparent', fontSize: 20, position: 'absolute', width: '100%', textAlign: 'center', top: 20 }}>Tap me</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{ marginHorizontal: 6 }} onPress={ () => Alert.alert('asf') }>
-            <Image
-              style={{
-                width: 130,
-                height: 70,
-                borderRadius: 15,
-                alignItems: 'center',
-                justifyContent: 'center',
-               }}
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjU3-XFrnu8szUNxHWq3yUl1RfSKgd0rtOhZ6teq2dNyXYGhKO' }} />
-            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: 'transparent', fontSize: 20, position: 'absolute', width: '100%', textAlign: 'center', top: 20 }}>Sad</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{ marginHorizontal: 6 }} onPress={ () => Alert.alert('asf') }>
-            <Image
-              style={{
-                width: 130,
-                height: 70,
-                borderRadius: 15,
-                alignItems: 'center',
-                justifyContent: 'center',
-               }}
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjU3-XFrnu8szUNxHWq3yUl1RfSKgd0rtOhZ6teq2dNyXYGhKO' }} />
-            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: 'transparent', fontSize: 20, position: 'absolute', width: '100%', textAlign: 'center', top: 20 }}>test</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{ marginHorizontal: 6 }} onPress={ () => Alert.alert('asf') }>
-            <Image
-              style={{
-                width: 130,
-                height: 70,
-                borderRadius: 15,
-                alignItems: 'center',
-                justifyContent: 'center',
-               }}
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjU3-XFrnu8szUNxHWq3yUl1RfSKgd0rtOhZ6teq2dNyXYGhKO' }} />
-            <Text style={{ color: 'white', fontWeight: 'bold', backgroundColor: 'transparent', fontSize: 20, position: 'absolute', width: '100%', textAlign: 'center', top: 20 }}>test</Text>
-          </TouchableOpacity>
-
-        </ScrollView>
-
         <ScrollView>
-
-
           <TouchableOpacity
             onPress={() => navigate(
               'Post',
@@ -111,9 +47,6 @@ export default class HomeScreen extends React.Component {
                 date: this.state.date,
               })}
           >
-            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-              Anime & Manga
-            </Text>
           </TouchableOpacity>
           <ScrollView horizontal={true}>
 
