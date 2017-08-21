@@ -15,11 +15,21 @@ import {
 import { StackNavigator } from 'react-navigation';
 import { MonoText } from '../components/StyledText';
 import { EvilIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class Post extends React.Component {
 
   state = {
-    modalVisible: true,
+    modalVisible: false,
+    likeicon: 'ios-heart-outline',
+    likecolor: 'black'
+  }
+
+  _handleLike = () => {
+    this.setState({
+      likeicon: 'ios-heart',
+      likecolor: 'red'
+    })
   }
 
   setModalVisible(visible) {
@@ -63,8 +73,8 @@ export default class Post extends React.Component {
         </Text>
         <View style={{height: 50, marginTop: 30, borderTopColor: '#F2F2F2', borderTopWidth: 2, flexDirection: 'row', alignItems: 'center'}}>
 
-          <TouchableOpacity style={{ flex: .16 }}>
-            <EvilIcons name='heart' size={35} style={{backgroundColor: 'transparent',}} />
+          <TouchableOpacity onPress={ this._handleLike } style={{ flex: .16 }}>
+            <Ionicons name={this.state.likeicon} size={31} color={this.state.likecolor} style={{backgroundColor: 'transparent', padding: 6}} />
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .16 }} onPress={() => {
@@ -75,7 +85,7 @@ export default class Post extends React.Component {
 
 
           <TouchableOpacity style={{ flex: .16 }}>
-          <EvilIcons name='share-apple' size={35} style={{backgroundColor: 'transparent',}} />
+            <EvilIcons name='share-apple' size={35} style={{backgroundColor: 'transparent',}} />
           </TouchableOpacity>
 
           <Text style={{backgroundColor: 'transparent', color: '#C1C1C1', flex: .3}}> 153 Likes</Text>
