@@ -7,6 +7,7 @@ import registerForPushNotificationsAsync from '../api/registerForPushNotificatio
 import Post from '../screens/Post';
 import Subcat from '../screens/Subcat';
 import SubcatPosts from '../screens/SubcatPosts';
+import InnerChat from '../screens/InnerChat';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 import Profile from '../screens/Profile';
@@ -33,6 +34,9 @@ const RootStackNavigator = StackNavigator(
     },
     SubcatPosts: {
       screen: SubcatPosts,
+    },
+    InnerChat: {
+      screen: InnerChat,
     },
   },
   {
