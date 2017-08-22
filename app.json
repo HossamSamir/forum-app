@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "forumapp",
-    "description": "No description",
+    "description": "simple & easy to use app for communicating with your anime friends!",
     "slug": "forumapp",
     "privacy": "public",
     "sdkVersion": "19.0.0",
@@ -16,6 +16,9 @@
     "loading": {
       "icon": "./assets/icons/loading-icon.png",
       "hideExponentText": true
+    },
+    "android": {
+      "package": "com.yourcompany.forumapp"
     },
     "packagerOpts": {
       "assetExts": ["ttf"]
