@@ -66,7 +66,7 @@ export default class Chat extends Component {
                   onPress={() => navigate(
                     'InnerChat',
                     {
-                      title: 'subcat #1'
+                      title: data
                     })}
                   style={{
                   width: '100%',

@@ -17,17 +17,39 @@ import Post from '../screens/Post';
 import PostCardFullWidth from '../components/PostCardFullWidth';
 import { MonoText } from '../components/StyledText';
 import { StackNavigator } from 'react-navigation';
-
+import { GiftedChat } from 'react-native-gifted-chat';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'this is a title',
-      imgsource: {uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg'},
-      date: 'july 28, 2017'
+       messages: [],
     }
   }
+
+  componentWillMount() {
+    this.setState({
+      messages: [
+        {
+          _id: 1,
+          text: 'Hello Admin, lets test 😁',
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'Hossam Samir',
+            avatar: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460',
+          },
+        },
+      ],
+    });
+  }
+
+  onSend(messages = []) {
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }));
+  }
+
 
   static navigationOptions = ({navigation}) => ({
       title: navigation.state.params.title,
@@ -36,70 +58,15 @@ export default class HomeScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <ScrollView>
-
-
-
-          <TouchableOpacity
-            onPress={() => navigate(
-              'Post',
-              {
-                title: this.state.title,
-                imgsource: this.state.imgsource,
-                date: this.state.date,
-              })}
-          >
-            <PostCardFullWidth
-               title = {this.state.title}
-               source = {this.state.imgsource}
-               date = {this.state.date} />
-          </TouchableOpacity>
-
-
-          <TouchableOpacity
-            onPress={() => navigate(
-              'Post',
-              {
-                title: this.state.title,
-                imgsource: this.state.imgsource,
-                date: this.state.date,
-              })}
-          >
-            <PostCardFullWidth
-               title = {this.state.title}
-               source = {this.state.imgsource}
-               date = {this.state.date} />
-          </TouchableOpacity>
-
-
-          <TouchableOpacity
-            onPress={() => navigate(
-              'Post',
-              {
-                title: this.state.title,
-                imgsource: this.state.imgsource,
-                date: this.state.date,
-              })}
-          >
-            <PostCardFullWidth
-               title = {this.state.title}
-               source = {this.state.imgsource}
-               date = {this.state.date} />
-          </TouchableOpacity>
-
-
-
-
-
-
-
-
-
-
-        </ScrollView>
-
-      </View>
+        <View style={{ width: '100%', height: '100%' }}>
+          <GiftedChat
+            style={{ backgroundColor: 'crimson', flex: 1 }}
+            messages={this.state.messages}
+            onSend={(messages) => this.onSend(messages)}
+            user={{
+              _id: 1,
+          }} />
+        </View>
     );
   }
 
@@ -115,10 +82,6 @@ const SimpleApp = StackNavigator({
 
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#121923',
-    flex: 1,
-    paddingTop: (Platform.OS == 'ios') ? 40 : 0,
-    paddingHorizontal: 10
-  }
+
+
 });
