@@ -27,19 +27,28 @@ export default class HomeScreen extends React.Component {
   }
 
   fetchData() {
-    fetch('https://forum-app-api.herokuapp.com/api/categories')
+    fetch('https://forum-app-api.herokuapp.com/api/home')
     .then((res) => res.json())
     .then((resJson) => {
       resJson.map((category) => {
         this.state.categories.push(category);
       })
-      console.log(this.state.categories);
+      // console.log(this.state.categories);
       this.setState({
         doneFetching: true
       })
     })
     .done();
   }
+
+  showPosts(id) {
+      return (
+        this.state.categories.map((postTest) => {
+          console.log(postTest);
+        })
+      )
+  }
+
 
   constructor(props) {
     super(props);
@@ -49,7 +58,7 @@ export default class HomeScreen extends React.Component {
       date: 'july 28, 2017',
       categoreyTitle: 'Anime & Manga',
       categories: [],
-      doneFetching: false
+      doneFetching: false,
     }
   }
 
@@ -76,37 +85,26 @@ export default class HomeScreen extends React.Component {
                 </Text>
               </TouchableOpacity>
               <ScrollView style={{ marginBottom: 30 }} horizontal={true}>
-                {/* CARD */}
-                  <TouchableOpacity
-                    onPress={() => navigate(
-                      'Post',
-                      {
-                        title: this.state.title,
-                        imgsource: this.state.imgsource,
-                        date: this.state.date,
-                      })}
-                  >
-                    <PostCard
-                       title = {this.state.title}
-                       source = {this.state.imgsource}
-                       date = {this.state.date} />
-                </TouchableOpacity>
 
-                {/* CARD */}
-                  <TouchableOpacity
-                    onPress={() => navigate(
-                      'Post',
-                      {
-                        title: this.state.title,
-                        imgsource: this.state.imgsource,
-                        date: this.state.date,
-                      })}
-                  >
-                    <PostCard
-                       title = {this.state.title}
-                       source = {this.state.imgsource}
-                       date = {this.state.date} />
-                </TouchableOpacity>
+                { cat.latest_four_posts.map((post) => {
+                  return (
+                    <TouchableOpacity
+                      key = {post.id}
+                      onPress={() => navigate(
+                        'Post',
+                        {
+                          title: post.title,
+                          imgsource: this.state.imgsource,
+                          date: this.state.date,
+                        })}
+                    >
+                      <PostCard
+                         title = {post.title}
+                         source = {this.state.imgsource}
+                         date = {this.state.date} />
+                  </TouchableOpacity>
+                  )
+                }) }
 
                 {/* SEE MORE CARD */}
                 <TouchableOpacity
