@@ -10,7 +10,8 @@ import {
   Button,
   Alert,
   Modal,
-  TouchableHighlight
+  TouchableHighlight,
+  TextInput
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { MonoText } from '../components/StyledText';
@@ -22,7 +23,8 @@ export default class Post extends React.Component {
   state = {
     modalVisible: false,
     likeicon: 'ios-heart-outline',
-    likecolor: 'black'
+    likecolor: 'black',
+    addAComment: ''
   }
 
   _handleLike = () => {
@@ -98,17 +100,16 @@ export default class Post extends React.Component {
                   animationType={"slide"}
                   transparent={true}
                   visible={this.state.modalVisible}
-                  onRequestClose={() => {alert("Modal has been closed.")}}
                   >
 
-                    <TouchableHighlight style={{ flex: 1, width: '100%' }} onPress={() => {
+                    <TouchableHighlight style={{ flex: .2, width: '100%' }} onPress={() => {
                       this.setModalVisible(!this.state.modalVisible)
                     }}>
                       <Text> </Text>
                     </TouchableHighlight>
 
                  <View style={{
-                     flex: .8,
+                     flex: 1,
                      width: '100%',
                      backgroundColor: 'white',
                      shadowColor: "#000000",
@@ -122,6 +123,19 @@ export default class Post extends React.Component {
                   <ScrollView style={{
                       flex: 3,
                      }}>
+
+                     <TextInput
+                       returnKeyType = 'send'
+                       onChangeText={ (addAComment) => this.setState({addAComment}) }
+                       onSubmitEditing = { () => {Alert.alert('Comment posted: ', this.state.addAComment)} }
+                       editable = {true}
+                       placeholder='Write a comment'
+                       style={{
+                         margin: 10,
+                         fontSize: 15,
+                         fontSize: 18,
+                         color: 'crimson',
+                     }} />
 
                     {/* Comment */}
                     <View style={{ padding: 10, flexDirection: 'row' }}>
