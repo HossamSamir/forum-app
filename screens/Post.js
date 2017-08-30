@@ -20,11 +20,56 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default class Post extends React.Component {
 
-  state = {
-    modalVisible: false,
-    likeicon: 'ios-heart-outline',
-    likecolor: 'black',
-    addAComment: ''
+  componentDidMount() {
+    this.fetchComments()
+  }
+
+  fetchComments() {
+    fetch('https://forum-app-api.herokuapp.com/api/comments?post_id=1')
+    .then((res) => res.json())
+    .then((resJson) => {
+      resJson.map((comment) => {
+        this.state.commentsData.push(comment)
+      })
+      this.setState({doneFetchingComments : true})
+    })
+  }
+
+  renderComments() {
+    if (this.state.doneFetchingComments == false) {
+      return (<Text>LOADINGGGGGGGGGGGGG</Text>)
+    } else {
+      return (
+        this.state.commentsData.map((c) => {
+          return (
+            <View key={c.comment.id} style={{ padding: 10, flexDirection: 'row' }}>
+              <View style={{ flex: 1 }}>
+                <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
+                  style={{ width: 55, height: 55, borderRadius: 27.5 }}
+                 />
+              </View>
+             <Text style={{ flex: 3 }}>
+               <Text style={{ fontWeight: 'bold' }}>{c.user.name} </Text>
+               {c.comment.comment}
+               <Text style={{ color: '#D8DBDE' }}>{'\n 10m ago'}</Text>
+             </Text>
+            </View>
+          )
+        })
+      )
+    }
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalVisible: false,
+      likeicon: 'ios-heart-outline',
+      likecolor: 'black',
+      addAComment: '',
+      commentsData: [],
+      doneFetchingComments: false
+    }
   }
 
   _handleLike = () => {
@@ -137,50 +182,8 @@ export default class Post extends React.Component {
                          color: 'crimson',
                      }} />
 
-                    {/* Comment */}
-                    <View style={{ padding: 10, flexDirection: 'row' }}>
-                      <View style={{ flex: 1 }}>
-                        <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
-                          style={{ width: 55, height: 55, borderRadius: 27.5 }}
-                         />
-                      </View>
-                     <Text style={{ flex: 3 }}>
-                       <Text style={{ fontWeight: 'bold' }}>Hossam Samir </Text>
-                       Really beatiful anime, I really want to go back to that place and bring my friends!
-                       <Text style={{ color: '#D8DBDE' }}>{'\n 10m ago'}</Text>
-                     </Text>
-                    </View>
-                    {/* Comment */}
+                   { this.renderComments() }
 
-                    {/* Comment */}
-                    <View style={{ padding: 10, flexDirection: 'row' }}>
-                      <View style={{ flex: 1 }}>
-                        <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
-                          style={{ width: 55, height: 55, borderRadius: 27.5 }}
-                         />
-                      </View>
-                     <Text style={{ flex: 3 }}>
-                       <Text style={{ fontWeight: 'bold' }}>Hossam Samir </Text>
-                       Really beatiful anime, I really want to go back to that place and bring my friends!
-                       <Text style={{ color: '#D8DBDE' }}>{'\n 10m ago'}</Text>
-                     </Text>
-                    </View>
-                    {/* Comment */}
-
-                    {/* Comment */}
-                    <View style={{ padding: 10, flexDirection: 'row' }}>
-                      <View style={{ flex: 1 }}>
-                        <Image source={{ uri: 'https://avatars1.githubusercontent.com/u/15352675?v=4&s=460' }}
-                          style={{ width: 55, height: 55, borderRadius: 27.5 }}
-                         />
-                      </View>
-                     <Text style={{ flex: 3 }}>
-                       <Text style={{ fontWeight: 'bold' }}>Hossam Samir </Text>
-                       Really beatiful anime, I really want to go back to that place and bring my friends!
-                       <Text style={{ color: '#D8DBDE' }}>{'\n 10m ago'}</Text>
-                     </Text>
-                    </View>
-                    {/* Comment */}
 
                   </ScrollView>
                  </View>
