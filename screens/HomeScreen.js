@@ -77,7 +77,8 @@ export default class HomeScreen extends React.Component {
                 onPress={() => navigate(
                   'Subcat',
                   {
-                    title: this.state.categoreyTitle,
+                    title: cat.title,
+                    id: cat.id
                   })}
               >
                 <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>

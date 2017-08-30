@@ -25,9 +25,66 @@ export default class HomeScreen extends React.Component {
     this.state = {
       title: 'this is a title',
       imgsource: {uri: 'https://i.ytimg.com/vi/2W8e0nU-j84/maxresdefault.jpg'},
-      date: 'july 28, 2017'
+      date: 'july 28, 2017',
+      posts: [],
+      doneFetchingPosts: false
     }
   }
+
+
+  componentDidMount() {
+    this.fetchPosts()
+  }
+
+
+
+  fetchPosts() {
+    fetch('https://forum-app-api.herokuapp.com/api/posts_by_sub_category?sub_category_id=' + this.props.navigation.state.params.id + '&page=1&limit=8')
+    .then((res) => res.json())
+    .then((resJson) => {
+      resJson.map((post) => {
+        this.state.posts.push(post)
+      })
+      // console.log(this.state.posts)
+      this.setState({
+        doneFetchingPosts: true
+      })
+    })
+  }
+
+
+
+  renderPosts() {
+    if (this.state.doneFetchingPosts == false) {
+      return (
+        <Text>LOADINGGGGGGGGGGGGG</Text>
+      )
+    } else {
+      const { navigate } = this.props.navigation;
+      return (
+        this.state.posts.map((post) => {
+          return (
+            <TouchableOpacity
+              key={post.id}
+              onPress={() => navigate(
+                'Post',
+                {
+                  title: post.title,
+                  imgsource: {uri: 'https://forum-app-api.herokuapp.com/' + post.image},
+                  date: this.state.date,
+                })}
+            >
+              <PostCardFullWidth
+                 title = {post.title}
+                 source = {{uri: 'https://forum-app-api.herokuapp.com/' + post.image}}
+                 date = {this.state.date} />
+            </TouchableOpacity>
+          )
+        })
+      )
+    }
+  }
+
 
   static navigationOptions = ({navigation}) => ({
       title: navigation.state.params.title,
@@ -39,63 +96,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView>
 
-
-
-          <TouchableOpacity
-            onPress={() => navigate(
-              'Post',
-              {
-                title: this.state.title,
-                imgsource: this.state.imgsource,
-                date: this.state.date,
-              })}
-          >
-            <PostCardFullWidth
-               title = {this.state.title}
-               source = {this.state.imgsource}
-               date = {this.state.date} />
-          </TouchableOpacity>
-
-
-          <TouchableOpacity
-            onPress={() => navigate(
-              'Post',
-              {
-                title: this.state.title,
-                imgsource: this.state.imgsource,
-                date: this.state.date,
-              })}
-          >
-            <PostCardFullWidth
-               title = {this.state.title}
-               source = {this.state.imgsource}
-               date = {this.state.date} />
-          </TouchableOpacity>
-
-
-          <TouchableOpacity
-            onPress={() => navigate(
-              'Post',
-              {
-                title: this.state.title,
-                imgsource: this.state.imgsource,
-                date: this.state.date,
-              })}
-          >
-            <PostCardFullWidth
-               title = {this.state.title}
-               source = {this.state.imgsource}
-               date = {this.state.date} />
-          </TouchableOpacity>
-
-
-
-
-
-
-
-
-
+          { this.renderPosts() }
 
         </ScrollView>
 

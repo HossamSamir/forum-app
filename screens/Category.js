@@ -30,6 +30,64 @@ export default class Category extends React.Component {
   render() {
     return (
       <View>
+        <TouchableOpacity
+          onPress={() => navigate(
+            'Subcat',
+            {
+              title: this.state.categoreyTitle,
+            })}
+        >
+          <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+            { this.state.categoreyTitle }
+          </Text>
+        </TouchableOpacity>
+        <ScrollView style={{ marginBottom: 30 }} horizontal={true}>
+          {/* CARD */}
+            <TouchableOpacity
+              onPress={() => navigate(
+                'Post',
+                {
+                  title: this.state.title,
+                  imgsource: this.state.imgsource,
+                  date: this.state.date,
+                })}
+            >
+              <PostCard
+                 title = {this.state.title}
+                 source = {this.state.imgsource}
+                 date = {this.state.date} />
+          </TouchableOpacity>
+
+          {/* CARD */}
+            <TouchableOpacity
+              onPress={() => navigate(
+                'Post',
+                {
+                  title: this.state.title,
+                  imgsource: this.state.imgsource,
+                  date: this.state.date,
+                })}
+            >
+              <PostCard
+                 title = {this.state.title}
+                 source = {this.state.imgsource}
+                 date = {this.state.date} />
+          </TouchableOpacity>
+
+          {/* SEE MORE CARD */}
+          <TouchableOpacity
+            onPress={() => navigate(
+              'Subcat',
+              {
+                title: this.state.categoreyTitle,
+              })}
+          >
+            <PostCard
+              title = 'see more'
+              source = {require('../assets/images/see-more.png')}
+              date = '...' />
+          </TouchableOpacity>
+        </ScrollView>
       </View>
     );
 }

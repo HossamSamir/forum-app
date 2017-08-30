@@ -19,6 +19,7 @@ export default class PostCardFullWidth extends React.Component {
         style={{backgroundColor: 'white', width: 280, borderRadius: 10, overflow: 'hidden', flex: 1, marginBottom: 30}}>
         <View style={{backgroundColor: 'white', width: '100%', height: 130}}>
           <Image
+            cache='force-cache'
             source={this.props.source}
             style={{
               width: '100%',
