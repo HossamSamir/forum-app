@@ -25,6 +25,7 @@ export default class Profile extends React.Component {
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
+      base64: true
     });
 
     console.log(result);
@@ -278,7 +279,7 @@ export default class Profile extends React.Component {
               <Row style={{flex: 2, flexDirection: 'column', }}>
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                   <EvilIcons name='user' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                  <TextInput onChangeText={ this._handleChangeEmail } returnKeyType='done' placeholderTextColor='white' placeholder="Email Address" style={{
+                  <TextInput onChangeText={ this._handleNewEmail } returnKeyType='done' placeholderTextColor='white' placeholder="Email Address" style={{
                   width: '80%',
                   fontSize: 10,
                   opacity: .7,
@@ -291,7 +292,7 @@ export default class Profile extends React.Component {
 
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                   <EvilIcons name='lock' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                  <TextInput onChangeText={ this._handleChangeFullName } placeholderTextColor='white' placeholder="Full Name" style={{
+                  <TextInput onChangeText={ this._handleNewFullName } placeholderTextColor='white' placeholder="Full Name" style={{
                   width: '80%',
                   fontSize: 10,
                   opacity: .7,
@@ -304,7 +305,7 @@ export default class Profile extends React.Component {
 
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                   <EvilIcons name='lock' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                  <TextInput onChangeText={ this._handleChangePassword } placeholderTextColor='white' placeholder="Password" secureTextEntry={true} style={{
+                  <TextInput onChangeText={ this._handleNewPassword } placeholderTextColor='white' placeholder="Password" secureTextEntry={true} style={{
                   width: '80%',
                   fontSize: 10,
                   opacity: .7,
@@ -317,7 +318,7 @@ export default class Profile extends React.Component {
 
                 <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                   <EvilIcons name='lock' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                  <TextInput onChangeText={ this._handleChangePassword } placeholderTextColor='white' placeholder="Password" secureTextEntry={true} style={{
+                  <TextInput onChangeText={ this._handleRepeatPassword } placeholderTextColor='white' placeholder="Password" secureTextEntry={true} style={{
                   width: '80%',
                   fontSize: 10,
                   opacity: .7,
@@ -362,10 +363,26 @@ export default class Profile extends React.Component {
       email: '',
       password: '',
       FullName: '',
+      newEmail: '',
+      newFullName: '',
+      newPassword: '',
+      repeatPassword: '',
       image: 'https://scontent.faly1-1.fna.fbcdn.net/v/t34.0-12/20793139_1938896546398834_1430976735_n.jpg?oh=65a96416ec5bf1ec995b2e7c4c507363&oe=598E9025',
     }
   }
 
+  _handleNewEmail = (newEmail) => {
+    this.setState({ newEmail })
+  }
+  _handleNewFullName = (newFullName) => {
+    this.setState({ newFullName })
+  }
+  _handleNewPassword = (newPassword) => {
+    this.setState({ newPassword })
+  }
+  _handleRepeatPassword = (repeatPassword) => {
+    this.setState({ repeatPassword })
+  }
   _handleChangeEmail = (email) => {
     this.setState({ email })
   }
@@ -379,25 +396,38 @@ export default class Profile extends React.Component {
   }
 
   _handleLogin = () => {
-    if (this.state.email == '') {
-      this.setState({
-        loggedIn: true
-      })
-    } else {
-      Alert.alert('Wrong Email')
-    }
+    // if (this.state.email == '') {
+    //   this.setState({
+    //     loggedIn: true
+    //   })
+    // } else {
+    //   Alert.alert('Wrong Email')
+    // }
   }
 
 
   _handleSignup = () => {
-    if (this.state.email == '') {
-      this.setState({
-        loggedIn: true,
-        showsignup: false
-      })
-    } else {
-      Alert.alert('Wrong Email')
-    }
+
+  //   fetch('https://forum-app-api.herokuapp.com/api/user/add?name='
+  //   + this.state.newFullName
+  //   + '&email=' + this.state.newEmail +
+  //   '&password=' + this.state.newPassword +
+  //   '&image=' + this.state.image
+  // )
+
+  fetch(`https://forum-app-api.herokuapp.com/api/user/add?name=${this.state.newFullName}&email=${this.state.newEmail}&password=${this.state.newPassword}&image=${this.state.image}`)
+    .then((res) => res.json())
+    .then((resJson) => console.log(resJson.status))
+
+
+    // if (this.state.email == '') {
+    //   this.setState({
+    //     loggedIn: true,
+    //     showsignup: false
+    //   })
+    // } else {
+    //   Alert.alert('Wrong Email')
+    // }
   }
 
 
