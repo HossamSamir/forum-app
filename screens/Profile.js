@@ -10,17 +10,24 @@ import {
   Button,
   Alert,
   TextInput,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  AsyncStorage
 } from 'react-native';
 import Post from './Post'
 import { StackNavigator } from 'react-navigation';
 import { Col, Row, Grid } from "react-native-easy-grid"
-import { EvilIcons } from '@expo/vector-icons';
+import { EvilIcons, Ionicons } from '@expo/vector-icons';
 import { ImagePicker, LinearGradient, BlurView } from 'expo';
 import PostCard from '../components/PostCard';
 
-
 export default class Profile extends React.Component {
+
+  componentDidMount() {
+    // AsyncStorage.setItem("mykey", '1234')
+    // AsyncStorage.getItem("mykey").then((value) => {
+    //   this.setState({ userSession: value })
+    // });
+  }
 
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -28,16 +35,15 @@ export default class Profile extends React.Component {
       base64: true
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      this.setState({ image: result.uri, imageBase64: result.base64, });
     }
   };
 
   _showSignup = () => {
     this.setState({
-      showsignup: true
+      showsignup: true,
+      loggedIn: false
     })
   }
 
@@ -48,10 +54,19 @@ export default class Profile extends React.Component {
   }
 
   _hasLoggedIn = () => {
+    AsyncStorage.getItem("session").then((value) => {
+      if (value == 'true') {
+        this.setState({ loggedIn: true })
+      } else {
+        this.setState({ loggedIn: false })
+      }
+    });
+
     if (this.state.showsignup == false) {
       if (this.state.loggedIn == false) {
         return (
           <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
+
 
               <Image source={require('../assets/images/bg.png')}
               style={{
@@ -78,7 +93,7 @@ export default class Profile extends React.Component {
                 <Row style={{flex: 2, flexDirection: 'column', }}>
                   <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',}}>
                     <EvilIcons name='user' size={38} color='crimson' style={{ backgroundColor: 'transparent' }} />
-                    <TextInput onChangeText={ this._handleChangeEmail }  placeholderTextColor='white' placeholder="Email Address" style={{
+                    <TextInput onChangeText={ this._handleChangeEmail }  placeholderTextColor='white' placeholder={this.state.userSession} style={{
                     width: '80%',
                     fontSize: 10,
                     opacity: .7,
@@ -233,7 +248,11 @@ export default class Profile extends React.Component {
 
             </ScrollView>
 
-
+            <TouchableOpacity onPress={() => {
+              AsyncStorage.setItem("session", 'false');
+            }}>
+              <Text style={{ backgroundColor: '#1F2D38', color: 'rgba(255, 255, 255, 0.8)', fontSize: 25, padding: 5, marginVertical: 20, borderRadius: 10, textAlign: 'center' }}>Logout</Text>
+            </TouchableOpacity>
             </ScrollView>
             </View>
         ) // end of the return
@@ -251,9 +270,6 @@ export default class Profile extends React.Component {
               bottom: 0,
               resizeMode: 'cover'
             }}/>
-
-
-
 
           <Grid>
               <View style={{
@@ -368,6 +384,8 @@ export default class Profile extends React.Component {
       newPassword: '',
       repeatPassword: '',
       image: 'https://scontent.faly1-1.fna.fbcdn.net/v/t34.0-12/20793139_1938896546398834_1430976735_n.jpg?oh=65a96416ec5bf1ec995b2e7c4c507363&oe=598E9025',
+      imageBase64: '',
+      userSession: ''
     }
   }
 
@@ -396,13 +414,24 @@ export default class Profile extends React.Component {
   }
 
   _handleLogin = () => {
-    // if (this.state.email == '') {
-    //   this.setState({
-    //     loggedIn: true
-    //   })
-    // } else {
-    //   Alert.alert('Wrong Email')
-    // }
+    fetch(`https://forum-app-api.herokuapp.com/api/user?email=${this.state.email}&password=${this.state.password}`)
+    .then((res) => res.json())
+    .then((resJson) => {
+      console.log('EMAIL:'+this.state.email);
+      console.log('PASSWORD:'+this.state.password);
+      console.log(resJson);
+      if(resJson.status == false)
+        Alert.alert('worng pw')
+      else {
+        AsyncStorage.setItem("session", 'true');
+        // AsyncStorage.getItem("session").then((value) => {
+        //   this.setState({ userSession: value })
+        // });
+          this.setState({
+            loggedIn: true
+          })
+      }
+    })
   }
 
 
@@ -415,7 +444,8 @@ export default class Profile extends React.Component {
   //   '&image=' + this.state.image
   // )
 
-  fetch(`https://forum-app-api.herokuapp.com/api/user/add?name=${this.state.newFullName}&email=${this.state.newEmail}&password=${this.state.newPassword}&image=${this.state.image}`)
+
+  fetch(`https://forum-app-api.herokuapp.com/api/user/add?name=${this.state.newFullName}&email=${this.state.newEmail}&password=${this.state.newPassword}&image=${this.state.iimage}`)
     .then((res) => res.json())
     .then((resJson) => console.log(resJson.status))
 
