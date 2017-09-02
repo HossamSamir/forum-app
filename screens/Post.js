@@ -11,7 +11,8 @@ import {
   Alert,
   Modal,
   TouchableHighlight,
-  TextInput
+  TextInput,
+  AsyncStorage
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { MonoText } from '../components/StyledText';
@@ -77,6 +78,20 @@ export default class Post extends React.Component {
       likeicon: 'ios-heart',
       likecolor: 'red'
     })
+  }
+
+  _handleAddComment = () => {
+    AsyncStorage.getItem("ID").then((value) => {
+      fetch(`https://forum-app-api.herokuapp.com/api/comment/add?user_id=${value}&post_id=${this.props.navigation.state.params.id}&comment=${this.state.addAComment}`)
+      .then((res) => res.json())
+      .then((resJson) => console.log(resJson))
+      .then(() => {
+        this.refs.commentInput.setNativeProps({text: ''})
+      })
+      console.log(this.state.addAComment);
+      console.log(value);
+      console.log(this.props.navigation.state.params.id);
+    });
   }
 
   setModalVisible(visible) {
@@ -171,8 +186,9 @@ export default class Post extends React.Component {
 
                      <TextInput
                        returnKeyType = 'send'
+                       ref='commentInput'
                        onChangeText={ (addAComment) => this.setState({addAComment}) }
-                       onSubmitEditing = { () => {Alert.alert('Comment posted: ', this.state.addAComment)} }
+                       onSubmitEditing = { this._handleAddComment }
                        editable = {true}
                        placeholder='Write a comment'
                        style={{

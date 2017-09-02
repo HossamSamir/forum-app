@@ -24,12 +24,12 @@ import { StackNavigator } from 'react-navigation';
 export default class HomeScreen extends React.Component {
 
   componentDidMount() {
-    AsyncStorage.getItem("session").then((value) => {
-      Alert.alert(value)
-    });
-    AsyncStorage.getItem("ID").then((value) => {
-      Alert.alert(value)
-    });
+    // AsyncStorage.getItem("session").then((value) => {
+    //   Alert.alert(value)
+    // });
+    // AsyncStorage.getItem("ID").then((value) => {
+    //   Alert.alert(value)
+    // });
     this.fetchData();
   }
 
@@ -104,6 +104,7 @@ export default class HomeScreen extends React.Component {
                           title: post.title,
                           imgsource: this.state.imgsource,
                           date: this.state.date,
+                          id: post.id
                         })}
                     >
                       <PostCard
