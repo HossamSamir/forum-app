@@ -386,7 +386,8 @@ export default class Profile extends React.Component {
       repeatPassword: '',
       image: 'https://scontent.faly1-1.fna.fbcdn.net/v/t34.0-12/20793139_1938896546398834_1430976735_n.jpg?oh=65a96416ec5bf1ec995b2e7c4c507363&oe=598E9025',
       imageBase64: '',
-      userSession: ''
+      userSession: '',
+      userData: {}
     }
   }
 
@@ -418,19 +419,17 @@ export default class Profile extends React.Component {
     fetch(`https://forum-app-api.herokuapp.com/api/user?email=${this.state.email}&password=${this.state.password}`)
     .then((res) => res.json())
     .then((resJson) => {
-      console.log('EMAIL:'+this.state.email);
-      console.log('PASSWORD:'+this.state.password);
-      console.log(resJson);
+
       if(resJson.status == false)
         Alert.alert('worng pw')
       else {
         AsyncStorage.setItem("session", 'true');
-        // AsyncStorage.getItem("session").then((value) => {
-        //   this.setState({ userSession: value })
-        // });
           this.setState({
+            userData: resJson[1].res[0],
             loggedIn: true
-          })
+          });
+          AsyncStorage.setItem("ID", JSON.stringify(this.state.userData.id))
+          console.log(this.state.userData);
       }
     })
   }
@@ -440,7 +439,7 @@ export default class Profile extends React.Component {
   fetch(`https://forum-app-api.herokuapp.com/api/user/add?name=${this.state.newFullName}&email=${this.state.newEmail}&password=${this.state.newPassword}&image=${this.state.iimage}`)
     .then((res) => res.json())
     .then((resJson) => {
-      console.log(resJson.status)
+      console.log(resJson)
       if(resJson.status == "done") {
         AsyncStorage.setItem("session", 'true');
         // AsyncStorage.getItem("session").then((value) => {

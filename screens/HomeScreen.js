@@ -9,7 +9,8 @@ import {
   View,
   Button,
   Alert,
-  ListView
+  ListView,
+  AsyncStorage
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import Post from '../screens/Post';
@@ -23,6 +24,12 @@ import { StackNavigator } from 'react-navigation';
 export default class HomeScreen extends React.Component {
 
   componentDidMount() {
+    AsyncStorage.getItem("session").then((value) => {
+      Alert.alert(value)
+    });
+    AsyncStorage.getItem("ID").then((value) => {
+      Alert.alert(value)
+    });
     this.fetchData();
   }
 
