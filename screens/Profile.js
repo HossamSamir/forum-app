@@ -249,6 +249,7 @@ export default class Profile extends React.Component {
             </ScrollView>
 
             <TouchableOpacity onPress={() => {
+                this.setState({ email: '', password: '' });
               AsyncStorage.setItem("session", 'false');
             }}>
               <Text style={{ backgroundColor: '#1F2D38', color: 'rgba(255, 255, 255, 0.8)', fontSize: 25, padding: 5, marginVertical: 20, borderRadius: 10, textAlign: 'center' }}>Logout</Text>
@@ -436,18 +437,24 @@ export default class Profile extends React.Component {
 
 
   _handleSignup = () => {
-
-  //   fetch('https://forum-app-api.herokuapp.com/api/user/add?name='
-  //   + this.state.newFullName
-  //   + '&email=' + this.state.newEmail +
-  //   '&password=' + this.state.newPassword +
-  //   '&image=' + this.state.image
-  // )
-
-
   fetch(`https://forum-app-api.herokuapp.com/api/user/add?name=${this.state.newFullName}&email=${this.state.newEmail}&password=${this.state.newPassword}&image=${this.state.iimage}`)
     .then((res) => res.json())
-    .then((resJson) => console.log(resJson.status))
+    .then((resJson) => {
+      console.log(resJson.status)
+      if(resJson.status == "done") {
+        AsyncStorage.setItem("session", 'true');
+        // AsyncStorage.getItem("session").then((value) => {
+        //   this.setState({ userSession: value })
+        // });
+          this.setState({
+            loggedIn: true,
+            showsignup: false
+          })
+      }
+      else {
+        Alert.alert('worng pw')
+      }
+    });
 
 
     // if (this.state.email == '') {
