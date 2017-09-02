@@ -23,15 +23,24 @@ export default class Post extends React.Component {
 
   componentDidMount() {
     this.fetchComments()
+    // console.log(this.props.navigation.state.params.id)
+    // AsyncStorage.getItem("ID").then((value) => console.log(value))
   }
 
+
   fetchComments() {
-    fetch('https://forum-app-api.herokuapp.com/api/comments?post_id=1')
+    fetch(`https://forum-app-api.herokuapp.com/api/comments?post_id=${this.props.navigation.state.params.id}`)
     .then((res) => res.json())
     .then((resJson) => {
       resJson.map((comment) => {
         this.state.commentsData.push(comment)
       })
+    })
+    .then(() => {
+      if (this.state.commentsData[0].status == false) {
+        // there is no comments
+        this.setState({ noComments: true })
+      }
       this.setState({doneFetchingComments : true})
     })
   }
@@ -39,7 +48,7 @@ export default class Post extends React.Component {
   renderComments() {
     if (this.state.doneFetchingComments == false) {
       return (<Text>LOADINGGGGGGGGGGGGG</Text>)
-    } else {
+    } else if (this.state.noComments == false) {
       return (
         this.state.commentsData.map((c) => {
           return (
@@ -55,8 +64,12 @@ export default class Post extends React.Component {
                <Text style={{ color: '#D8DBDE' }}>{'\n 10m ago'}</Text>
              </Text>
             </View>
-          )
+            )
         })
+      )
+    } else {
+      return (
+        <Text>There is no comments here...</Text>
       )
     }
   }
@@ -69,7 +82,8 @@ export default class Post extends React.Component {
       likecolor: 'black',
       addAComment: '',
       commentsData: [],
-      doneFetchingComments: false
+      doneFetchingComments: false,
+      noComments: false
     }
   }
 
@@ -198,7 +212,7 @@ export default class Post extends React.Component {
                          color: 'crimson',
                      }} />
 
-                   { this.renderComments() }
+                   {  this.renderComments() }
 
 
                   </ScrollView>

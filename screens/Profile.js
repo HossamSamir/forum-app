@@ -429,7 +429,7 @@ export default class Profile extends React.Component {
             loggedIn: true
           });
           AsyncStorage.setItem("ID", JSON.stringify(this.state.userData.id))
-          console.log(this.state.userData);
+          // AsyncStorage.getItem("ID").then((id) => console.log(id))
       }
     })
   }
