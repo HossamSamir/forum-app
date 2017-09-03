@@ -102,15 +102,16 @@ export default class HomeScreen extends React.Component {
                         'Post',
                         {
                           title: post.title,
+                          desc: post.post,
                           imgsource: this.state.imgsource,
-                          date: this.state.date,
+                          date: post.created_at,
                           id: post.id
                         })}
                     >
                       <PostCard
                          title = {post.title}
                          source = {this.state.imgsource}
-                         date = {this.state.date} />
+                         date = {post.created_at} />
                   </TouchableOpacity>
                   )
                 }) }
@@ -120,7 +121,8 @@ export default class HomeScreen extends React.Component {
                   onPress={() => navigate(
                     'Subcat',
                     {
-                      title: this.state.categoreyTitle,
+                      title: cat.title,
+                      id: cat.id
                     })}
                 >
                   <PostCard

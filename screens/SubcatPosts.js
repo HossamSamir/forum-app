@@ -70,14 +70,15 @@ export default class HomeScreen extends React.Component {
                 'Post',
                 {
                   title: post.title,
+                  desc: post.post,
+                  date: post.created_at,
                   imgsource: {uri: 'https://forum-app-api.herokuapp.com/' + post.image},
-                  date: this.state.date,
                 })}
             >
               <PostCardFullWidth
                  title = {post.title}
                  source = {{uri: 'https://forum-app-api.herokuapp.com/' + post.image}}
-                 date = {this.state.date} />
+                 date = {post.created_at} />
             </TouchableOpacity>
           )
         })
