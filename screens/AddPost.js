@@ -13,7 +13,8 @@ import {
   KeyboardAvoidingView,
   Picker,
   Item,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from 'react-native';
 import { WebView } from 'react-native';
 import { ImagePicker } from 'expo';
@@ -112,6 +113,7 @@ export default class AddPost extends React.Component {
       description: '',
       category: {},
       subcategory: {},
+      publishing: false
     }
   }
 
@@ -138,7 +140,20 @@ export default class AddPost extends React.Component {
       this.setState({ subcategory: subcategory })
     }
 
+    publishButton() {
+        if (this.state.publishing == false) {
+          return (
+            <Text style={styles.publish}>Publish</Text>
+          )
+        } else {
+          return (
+            <ActivityIndicator size="large" />
+          )
+        }
+    }
+
     _handlePublish = () => {
+      this.setState({ publishing: true })
       AsyncStorage.getItem("ID").then((userID) => {
 
         fetch('https://forum-app-api.herokuapp.com/api/post/add', {
@@ -166,6 +181,7 @@ export default class AddPost extends React.Component {
           this.refs['titleInput'].setNativeProps({text: ''});
           this.refs['descriptionInput'].setNativeProps({text: ''});
           Alert.alert('published :D !')
+          this.setState({ publishing: false })
         })
 
 
@@ -244,7 +260,7 @@ export default class AddPost extends React.Component {
 
           <TouchableOpacity style={{ marginVertical: 10, borderRadius: 10, borderColor: 'green', borderWidth: 1, alignItems: 'center', justifyContent: 'center' }}
             onPress={ this._handlePublish }>
-              <Text style={styles.publish}>Publish</Text>
+              { this.publishButton() }
           </TouchableOpacity>
 
 

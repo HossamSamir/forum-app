@@ -395,7 +395,7 @@ export default class Profile extends React.Component {
     this.setState({ newEmail })
   }
   _handleNewFullName = (newFullName) => {
-    this.setState({ newFullName })
+    this.setState({ newFullName: newFullName, FullName: newFullName })
   }
   _handleNewPassword = (newPassword) => {
     this.setState({ newPassword })
