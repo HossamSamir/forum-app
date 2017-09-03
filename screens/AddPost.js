@@ -12,7 +12,8 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Picker,
-  Item
+  Item,
+  AsyncStorage
 } from 'react-native';
 import { WebView } from 'react-native';
 import { ImagePicker } from 'expo';
@@ -21,16 +22,96 @@ import { EvilIcons } from '@expo/vector-icons';
 
 export default class AddPost extends React.Component {
 
+  componentDidMount() {
+    this.fetchData()
+    this.fetchSubData()
+  }
+
+  fetchData() {
+    fetch('https://forum-app-api.herokuapp.com/api/categories')
+    .then((res) => res.json())
+    .then((resJson) => {
+      resJson.map((cat) => {
+        this.state.categories.push(cat)
+      })
+    })
+    .then(
+      this.setState({doneFetchingCats: true})
+    )
+  }
+
+  fetchSubData() {
+    fetch('https://forum-app-api.herokuapp.com/api/sub_categories?category_id=1')
+    .then((res) => res.json())
+    .then((resJson) => {
+      resJson.map((cat) => {
+        this.state.subCategories.push(cat)
+      })
+    })
+    .then(
+      this.setState({doneFetchingSubcats: true})
+    )
+  }
+
+  renderCategories() {
+    if (this.state.doneFetchingCats == false) {
+      return(
+        <Text>LOADINGGGGGGGGGGGGG</Text>
+      )
+    } else {
+      return (
+        <Picker style={styles.picker} selectedValue={this.state.category.value} onValueChange={(itemValue, itemIndex) => {
+            this.setState({ category: {value: itemValue, id: itemIndex+1}})
+            console.log(itemValue, itemIndex+1);
+          }}>
+          {
+            this.state.categories.map((cat) => {
+              return (
+                <Picker.Item key={cat.id} label={cat.title}  value={cat.title} />
+              )
+            })
+          }
+        </Picker>
+      )
+    }
+  }
+
+  renderSubCategories() {
+    if (this.state.doneFetchingSubcats == false) {
+      return(
+        <Text>LOADINGGGGGGGGGGGGG</Text>
+      )
+    } else {
+      return (
+        <Picker style={styles.picker} selectedValue={this.state.subcategory.value} onValueChange={(itemValue, itemIndex) => {
+            this.setState({ subcategory: {value: itemValue, id: itemIndex+1}})
+            console.log(itemValue, itemIndex+1);
+          }}>
+          {
+            this.state.subCategories.map((cat) => {
+              return (
+                <Picker.Item key={cat.id} label={cat.title}  value={cat.title} />
+              )
+            })
+          }
+        </Picker>
+      )
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       image: 'https://support.e2ma.net/@api/deki/files/783/placeholder.png?revision=1&size=bestfit&width=468&height=186',
+      imageBase64: '',
       title: '',
+      categories: [],
+      subCategories: [],
+      doneFetchingCats: false,
+      doneFetchingSubCats: false,
       description: '',
-      category: '',
-      subcategory: '',
-      showCategoreis: false,
-      showsubCategoreis: false
+      category: {},
+      subcategory: {},
     }
   }
 
@@ -44,28 +125,51 @@ export default class AddPost extends React.Component {
     console.log(result);
 
     if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      this.setState({ image: result.uri, imageBase64: result.base64 });
     }
   };
 
-    updateCategory = (category) => {
-      this.setState({ category: category })
-    }
+    // updateCategory = (category) => {
+    //   console.log(category)
+    //   this.setState({ category: category })
+    // }
 
     updatesubCategory = (subcategory) => {
       this.setState({ subcategory: subcategory })
     }
 
-
     _handlePublish = () => {
-      this.setState({
-        image: 'https://support.e2ma.net/@api/deki/files/783/placeholder.png?revision=1&size=bestfit&width=468&height=186',
-        category: 'Anime',
-        subcategory: 'Anime subCat. #1'
-       })
-      this.refs['titleInput'].setNativeProps({text: ''});
-      this.refs['descriptionInput'].setNativeProps({text: ''});
-      Alert.alert('published :D !')
+      AsyncStorage.getItem("ID").then((userID) => {
+
+        fetch('https://forum-app-api.herokuapp.com/api/post/add', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            category_id: this.state.category.id,
+            sub_category_id: this.state.subcategory.id,
+            user_id: userID,
+            post: this.state.description,
+            title: this.state.title,
+            image: this.state.imageBase64,
+          })
+        })
+        .then((res) => console.log(res))
+        .then(() => {
+          this.setState({
+            image: 'https://support.e2ma.net/@api/deki/files/783/placeholder.png?revision=1&size=bestfit&width=468&height=186',
+            category: 'Anime',
+            subcategory: 'Anime subCat. #1'
+           })
+          this.refs['titleInput'].setNativeProps({text: ''});
+          this.refs['descriptionInput'].setNativeProps({text: ''});
+          Alert.alert('published :D !')
+        })
+
+
+      });
     }
 
 
@@ -86,7 +190,7 @@ export default class AddPost extends React.Component {
 
 
           <TextInput
-            onCHangeText={(title) => this.setState({ title })}
+            onChangeText={(title) => this.setState({ title })}
             ref='titleInput'
             selectionColor='crimson'
             returnKeyType = {"next"}
@@ -125,33 +229,13 @@ export default class AddPost extends React.Component {
 
           <View style={{ flex: 1, flexDirection: 'row' }}>
             <View style={{ flex: 1 }}>
-              <TouchableOpacity onPress={ () => this.setState({ showCategoreis: true }) }>
                 <Text style = {styles.category}> category:</Text>
-              </TouchableOpacity>
-
-              <Picker style={styles.picker} selectedValue = {this.state.category} onValueChange = {this.updateCategory}>
-                <Picker.Item label = "Anime" value = "Anime" />
-                <Picker.Item label = "Anime & Manga" value = "Anime & Manga" />
-                <Picker.Item label = "Anime category 3" value = "Anime category 3" />
-                <Picker.Item label = "Anime category 4" value = "Anime category 4" />
-              </Picker>
+              { this.renderCategories() }
             </View>
 
-
-
-
             <View style={{ flex: 1 }}>
-              <TouchableOpacity onPress={ () => this.setState({ showCategoreis: true }) }>
-                <Text style = {styles.category}> subcategory:</Text>
-              </TouchableOpacity>
-
-              <Picker style={styles.picker} selectedValue = {this.state.subcategory} onValueChange = {this.updatesubCategory}>
-                <Picker.Item label = "Anime subCat. #1" value = "Anime subCat. #1" />
-                <Picker.Item label = "Anime subCat. #2" value = "Anime subCat. #2" />
-                <Picker.Item label = "Anime subCat. #3" value = "Anime subCat. #3" />
-                <Picker.Item label = "Anime subCat. #4" value = "Anime subCat. #4" />
-                <Picker.Item label = "Anime subCat. #5" value = "Anime subCat. #5" />
-              </Picker>
+                <Text style = {styles.category}> subCategory:</Text>
+              { this.renderSubCategories() }
             </View>
           </View>
 
