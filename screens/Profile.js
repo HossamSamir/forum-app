@@ -442,16 +442,15 @@ export default class Profile extends React.Component {
       console.log(resJson)
       if(resJson.status == "done") {
         AsyncStorage.setItem("session", 'true');
-        // AsyncStorage.getItem("session").then((value) => {
-        //   this.setState({ userSession: value })
-        // });
           this.setState({
+            userData: {id: resJson.id},
             loggedIn: true,
             showsignup: false
           })
+          AsyncStorage.setItem("ID", JSON.stringify(resJson.id))
       }
       else {
-        Alert.alert('worng pw')
+        Alert.alert('worng info')
       }
     });
 

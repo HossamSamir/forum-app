@@ -37,6 +37,7 @@ export default class Post extends React.Component {
       })
     })
     .then(() => {
+      console.log(this.state.commentsData[0].status)
       if (this.state.commentsData[0].status == false) {
         // there is no comments
         this.setState({ noComments: true })
